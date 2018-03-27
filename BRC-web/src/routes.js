@@ -10,7 +10,10 @@ import Main from './views/core/Main.vue'
 import Dashboard from './views/core/Dashboard.vue'
 
 import BookInfoList from './views/book/bookInfo/List.vue'
-
+import BookBorrowingList from './views/book/bookBorrowing/List.vue'
+import BookReturnList from './views/book/bookReturn/List.vue'
+import BookTypeList from './views/book/bookType/List.vue'
+import BookUseRecordList from './views/book/bookUseRecord/List.vue'
 
 import UserList from './views/basic/user/List.vue'
 import UserCreate from './views/basic/user/Create.vue'
@@ -36,7 +39,10 @@ let routes = [
             { path: '/basic/user/edit/:userId', component: UserEdit, name: 'user-edit' },
 
             { path: '/book/book-info/list', component: BookInfoList, name: 'book-list' },
-
+            { path: '/book/book-borrowing/list', component: BookBorrowingList, name: 'book-borrowing-list' },
+            { path: '/book/book-return/list', component: BookReturnList, name: 'book-return-list' },
+            { path: '/book/book-type/list', component: BookTypeList, name: 'book-type-list' },
+            { path: '/book/book-use-record/list', component: BookUseRecordList, name: 'book-use-record-list' },
         ]
     }
 ];

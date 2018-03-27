@@ -4,9 +4,10 @@
             <el-submenu index="2">
                 <template slot="title">图书管理</template>
                 <el-menu-item index="/book/book-info/list">图书信息管理</el-menu-item>
-                <el-menu-item index="/basic/user/list">图书借阅管理</el-menu-item>
-                <el-menu-item index="/module/module-model/list">图书归还管理</el-menu-item>
-                <el-menu-item index="/module/module-agreement/list">图书分类管理</el-menu-item>
+                <el-menu-item index="/book/book-borrowing/list">图书借阅管理</el-menu-item>
+                <el-menu-item index="/book/book-return/list">图书归还管理</el-menu-item>
+                <el-menu-item index="/book/book-type/list">图书分类管理</el-menu-item>
+                <el-menu-item index="/book/book-use-record/list">图书使用记录</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">读者管理</template>
