@@ -1,4 +1,4 @@
-it's the community information modules. 
-it contains the notice, community and others,
+it's the community modules. 
+it contains the notice, communityInfo and others,
 
 
