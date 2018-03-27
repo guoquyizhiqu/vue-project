@@ -15,6 +15,9 @@ import BookReturnList from './views/book/bookReturn/List.vue'
 import BookTypeList from './views/book/bookType/List.vue'
 import BookUseRecordList from './views/book/bookUseRecord/List.vue'
 
+import CommunityInfoList from './views/community/communityinfo/List.vue'
+import NoticeList from './views/community/notice/List.vue'
+
 import UserList from './views/basic/user/List.vue'
 import UserCreate from './views/basic/user/Create.vue'
 import UserDetail from './views/basic/user/Detail.vue'
@@ -43,6 +46,10 @@ let routes = [
             { path: '/book/book-return/list', component: BookReturnList, name: 'book-return-list' },
             { path: '/book/book-type/list', component: BookTypeList, name: 'book-type-list' },
             { path: '/book/book-use-record/list', component: BookUseRecordList, name: 'book-use-record-list' },
+
+
+            { path: '/community/community-info/list', component: CommunityInfoList, name: 'community-info-list' },
+            { path: '/community/notice/list', component: NoticeList, name: 'notice-list' },
         ]
     }
 ];

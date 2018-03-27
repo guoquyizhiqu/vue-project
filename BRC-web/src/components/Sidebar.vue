@@ -14,9 +14,10 @@
                 <el-menu-item index="/equipment/equipment/list">读者信息管理</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
-                <template slot="title">社区信息管理</template>
-                <el-menu-item index="/analysis/equipment-data/list">公告管理</el-menu-item>
-                <el-menu-item index="/analysis/equipment-data/list">社区管理</el-menu-item>
+                <template slot="title">社区管理</template>
+                <el-menu-item index="/community/community-info/list">社区信息管理</el-menu-item>
+                <el-menu-item index="/community/notice/list">公告管理</el-menu-item>
+
             </el-submenu>
             <el-submenu index="5">
                 <template slot="title">预备模块</template>
