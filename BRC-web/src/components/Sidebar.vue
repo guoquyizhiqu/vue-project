@@ -3,8 +3,8 @@
         <el-menu default-active="2" class="el-menu-vertical" @open="handleOpen" @close="handleClose" router>
             <el-submenu index="2">
                 <template slot="title">图书管理</template>
-                <el-menu-item index="/module/module/list">图书信息管理</el-menu-item>
-                <el-menu-item index="/module/module-type/list">图书借阅管理</el-menu-item>
+                <el-menu-item index="/book/book-info/list">图书信息管理</el-menu-item>
+                <el-menu-item index="/basic/user/list">图书借阅管理</el-menu-item>
                 <el-menu-item index="/module/module-model/list">图书归还管理</el-menu-item>
                 <el-menu-item index="/module/module-agreement/list">图书分类管理</el-menu-item>
             </el-submenu>

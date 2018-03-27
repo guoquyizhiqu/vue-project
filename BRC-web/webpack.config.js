@@ -61,7 +61,7 @@ module.exports = (options = {}) => ({
     proxy: {
       '/api/': {
         //target: 'https://www.easy-mock.com/mock/593ad7e58ac26d795fc6ff4f/task',
-       // target:  'https://www.easy-mock.com/mock/5a28af069ed7836cbfe53954/nbiot',
+        //target:  'https://www.easy-mock.com/mock/5a28af069ed7836cbfe53954/nbiot',
         target: 'http://127.0.0.1:8080',
         changeOrigin: true,
         pathRewrite: {
