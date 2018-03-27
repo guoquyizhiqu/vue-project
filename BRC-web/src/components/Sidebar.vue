@@ -11,7 +11,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">读者管理</template>
-                <el-menu-item index="/equipment/equipment/list">读者信息管理</el-menu-item>
+                <el-menu-item index="/reader/reader-info/list">读者信息管理</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
                 <template slot="title">社区管理</template>
