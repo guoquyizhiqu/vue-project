@@ -20,7 +20,11 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="readerName" label="读者名称" sortable width="180"></el-table-column>
+                    <el-table-column prop="readerName" label="读者名称" width="180"></el-table-column>
+                    <el-table-column prop="---" label="性别" width="180"></el-table-column>
+                    <el-table-column prop="---" label="年龄" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="学号" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">

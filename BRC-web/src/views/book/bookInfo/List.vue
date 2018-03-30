@@ -20,7 +20,14 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
+                    <el-table-column prop="bookName" label="图书名称" width="130"></el-table-column>
+                    <el-table-column prop="---" label="出版社" width="130"></el-table-column>
+                    <el-table-column prop="---" label="出版时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="作者" width="100"></el-table-column>
+                    <el-table-column prop="---" label="价格" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="分类" width="130"></el-table-column>
+                    <el-table-column prop="---" label="创建时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="创建人" width="130"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">

@@ -21,6 +21,8 @@
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
                     <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="借阅人" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="借阅时间" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
