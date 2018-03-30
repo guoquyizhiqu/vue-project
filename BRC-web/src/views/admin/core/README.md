@@ -1,2 +1,2 @@
-it's the home page of the whole project.
+it's the home page of the admin modules.
 

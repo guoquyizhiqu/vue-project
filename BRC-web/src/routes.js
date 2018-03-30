@@ -5,55 +5,67 @@
 
 
 
-import Login from './views/admin/core/Login.vue'
-import Main from './views/admin/core/Main.vue'
-import Dashboard from './views/admin/core/Dashboard.vue'
+import AdminLogin from './views/admin/core/Login.vue'
+import AdminMain from './views/admin/core/Main.vue'
+import AdminDashboard from './views/admin/core/Dashboard.vue'
 
-import BookInfoList from './views/admin/book/bookInfo/List.vue'
-import BookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
-import BookReturnList from './views/admin/book/bookReturn/List.vue'
-import BookTypeList from './views/admin/book/bookType/List.vue'
-import BookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
+import AdminBookInfoList from './views/admin/book/bookInfo/List.vue'
+import AdminBookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
+import AdminBookReturnList from './views/admin/book/bookReturn/List.vue'
+import AdminBookTypeList from './views/admin/book/bookType/List.vue'
+import AdminBookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
 
-import CommunityInfoList from './views/admin/community/communityinfo/List.vue'
-import NoticeList from './views/admin/community/notice/List.vue'
-import ReaderInfoList from './views/admin/reader/readerInfo/List.vue'
+import AdminCommunityInfoList from './views/admin/community/communityinfo/List.vue'
+import AdminNoticeList from './views/admin/community/notice/List.vue'
+import AdminReaderInfoList from './views/admin/reader/readerInfo/List.vue'
 
-import UserList from './views/admin/basic/user/List.vue'
-import UserCreate from './views/admin/basic/user/Create.vue'
-import UserDetail from './views/admin/basic/user/Detail.vue'
-import UserEdit from './views/admin/basic/user/Edit.vue'
+import AdminUserList from './views/admin/basic/user/List.vue'
+import AdminUserCreate from './views/admin/basic/user/Create.vue'
+import AdminUserDetail from './views/admin/basic/user/Detail.vue'
+import AdminUserEdit from './views/admin/basic/user/Edit.vue'
+
+
+
+import ReaderMain from './views/reader/core/Main.vue'
 
 let routes = [
     {
         path: '/admin/login',
-        component: Login,
+        component: AdminLogin,
         name:'admin-login'
     },
     {
         path: '/',
-        component:Main,
-        name:'Main',
+        component: AdminMain,
+        name:'admin-main',
         children: [
-            { path: '/admin/core/dashboard', component: Dashboard, name: 'admin-dashboard' },
+            { path: '/admin/core/dashboard', component: AdminDashboard, name: 'admin-dashboard' },
 
-            { path: '/admin/basic/user/list', component: UserList, name: 'admin-user-list' },
-            { path: '/admin/basic/user/create', component: UserCreate, name: 'admin-user-create' },
-            { path: '/admin/basic/user/detail/:userId', component: UserDetail, name: 'admin-user-detail' },
-            { path: '/admin/basic/user/edit/:userId', component: UserEdit, name: 'admin-user-edit' },
+            { path: '/admin/basic/user/list', component: AdminUserList, name: 'admin-user-list' },
+            { path: '/admin/basic/user/create', component: AdminUserCreate, name: 'admin-user-create' },
+            { path: '/admin/basic/user/detail/:userId', component: AdminUserDetail, name: 'admin-user-detail' },
+            { path: '/admin/basic/user/edit/:userId', component: AdminUserEdit, name: 'admin-user-edit' },
 
-            { path: '/admin/book/book-info/list', component: BookInfoList, name: 'admin-book-list' },
-            { path: '/admin/book/book-borrowing/list', component: BookBorrowingList, name: 'admin-book-borrowing-list' },
-            { path: '/admin/book/book-return/list', component: BookReturnList, name: 'admin-book-return-list' },
-            { path: '/admin/book/book-type/list', component: BookTypeList, name: 'admin-book-type-list' },
-            { path: '/admin/book/book-use-record/list', component: BookUseRecordList, name: 'admin-book-use-record-list' },
+            { path: '/admin/book/book-info/list', component: AdminBookInfoList, name: 'admin-book-list' },
+            { path: '/admin/book/book-borrowing/list', component: AdminBookBorrowingList, name: 'admin-book-borrowing-list' },
+            { path: '/admin/book/book-return/list', component: AdminBookReturnList, name: 'admin-book-return-list' },
+            { path: '/admin/book/book-type/list', component: AdminBookTypeList, name: 'admin-book-type-list' },
+            { path: '/admin/book/book-use-record/list', component: AdminBookUseRecordList, name: 'admin-book-use-record-list' },
 
-            { path: '/admin/community/community-info/list', component: CommunityInfoList, name: 'admin-community-info-list' },
-            { path: '/admin/community/notice/list', component: NoticeList, name: 'admin-notice-list' },
+            { path: '/admin/community/community-info/list', component: AdminCommunityInfoList, name: 'admin-community-info-list' },
+            { path: '/admin/community/notice/list', component: AdminNoticeList, name: 'admin-notice-list' },
 
-            { path: '/admin/reader/reader-info/list', component: ReaderInfoList, name: 'admin-reader-info-list' },
+            { path: '/admin/reader/reader-info/list', component: AdminReaderInfoList, name: 'admin-reader-info-list' },
         ]
-    }
+    },
+    {
+        path: '/reader',
+        component: ReaderMain,
+        name:'reader-main',
+        children: [
+            { path: '/admin/core/dashboard', component: AdminDashboard, name: 'admin-dashboard' },
+        ]
+    },
 ];
 
 export default routes;
