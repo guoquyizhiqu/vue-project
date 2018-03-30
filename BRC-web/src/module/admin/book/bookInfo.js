@@ -2,7 +2,7 @@
  * Created by liu on 2018/3/20
  * */
 
-import axios from '../../api/api';
+import axios from '../../../api/api';
 
 export const bookInfos = params => {
     return [{bookName:"aa"}]

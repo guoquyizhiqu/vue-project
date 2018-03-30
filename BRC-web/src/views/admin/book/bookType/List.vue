@@ -2,11 +2,11 @@
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
             <el-breadcrumb-item>图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书退还管理</el-breadcrumb-item>
+            <el-breadcrumb-item>图书类型管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入图书名称"  class="input-with-select">
+                <el-input placeholder="请输入图书类型名称"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -20,10 +20,7 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅人" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅时间" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="归还时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="bookTypeName" label="图书类型名称" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -60,7 +57,7 @@
 
 <script>
 
-    import  { bookReturns } from '../../../module/book/bookReturn';
+    import  { bookTypes } from '../../../../module/admin/book/bookType';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -80,7 +77,7 @@
 
             let _this = this;
             this.$nextTick(function () {
-                _this.listUserData = bookReturns();
+                _this.listUserData = bookTypes();
                 _this.loading = false;
 
                /* bookInfos().then(bookInfos => {

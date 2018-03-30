@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import {} from './../../../api/api'
+    import {} from '../../../../api/api'
     import { Message } from 'element-ui';
     export default {
         data () {

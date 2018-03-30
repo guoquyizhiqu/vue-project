@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
-            <el-breadcrumb-item>图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书类型管理</el-breadcrumb-item>
+            <el-breadcrumb-item>读者管理</el-breadcrumb-item>
+            <el-breadcrumb-item>读者信息管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入图书类型名称"  class="input-with-select">
+                <el-input placeholder="请输入读者名称"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -20,7 +20,11 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookTypeName" label="图书类型名称" sortable width="180"></el-table-column>
+                    <el-table-column prop="readerName" label="读者名称" width="180"></el-table-column>
+                    <el-table-column prop="---" label="性别" width="180"></el-table-column>
+                    <el-table-column prop="---" label="年龄" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="学号" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -57,7 +61,7 @@
 
 <script>
 
-    import  { bookTypes } from '../../../module/book/bookType';
+    import  { readerInfos } from '../../../../module/admin/reader/readerInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -77,7 +81,7 @@
 
             let _this = this;
             this.$nextTick(function () {
-                _this.listUserData = bookTypes();
+                _this.listUserData = readerInfos();
                 _this.loading = false;
 
                /* bookInfos().then(bookInfos => {

@@ -19,7 +19,7 @@
 
 <script>
 
-    import {login} from '../../api/api'
+    import {login} from '../../../api/api'
     export default {
         data () {
             return {

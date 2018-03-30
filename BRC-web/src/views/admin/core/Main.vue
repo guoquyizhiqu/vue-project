@@ -16,8 +16,8 @@
 
 <script>
 
-    import vNavbar from './../../components/Navbar.vue'
-    import vSidebar from './../../components/Sidebar.vue'
+    import vNavbar from '../../../components/Navbar.vue'
+    import vSidebar from '../../../components/Sidebar.vue'
     export default {
         data () {
             return {

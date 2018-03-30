@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
-            <el-breadcrumb-item>图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书使用记录</el-breadcrumb-item>
+            <el-breadcrumb-item>社区管理</el-breadcrumb-item>
+            <el-breadcrumb-item>公告管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入图书类型名称"  class="input-with-select">
+                <el-input placeholder="请输入公告"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -20,10 +20,9 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅人" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借用时间" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="归还时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="noticeContent" label="公告内容" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="---" label="是否置顶" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -60,7 +59,7 @@
 
 <script>
 
-    import  { bookUseRecords } from '../../../module/book/bookUseRecord';
+    import  { notices } from '../../../../module/admin/community/notice';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -80,7 +79,7 @@
 
             let _this = this;
             this.$nextTick(function () {
-                _this.listUserData = bookUseRecords();
+                _this.listUserData = notices();
                 _this.loading = false;
 
                /* bookInfos().then(bookInfos => {

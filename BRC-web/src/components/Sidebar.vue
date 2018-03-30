@@ -3,20 +3,20 @@
         <el-menu default-active="2" class="el-menu-vertical" @open="handleOpen" @close="handleClose" router>
             <el-submenu index="2">
                 <template slot="title">图书管理</template>
-                <el-menu-item index="/book/book-info/list">图书信息管理</el-menu-item>
-                <el-menu-item index="/book/book-borrowing/list">图书借阅管理</el-menu-item>
-                <el-menu-item index="/book/book-return/list">图书归还管理</el-menu-item>
-                <el-menu-item index="/book/book-type/list">图书分类管理</el-menu-item>
-                <el-menu-item index="/book/book-use-record/list">图书使用记录</el-menu-item>
+                <el-menu-item index="/admin/book/book-info/list">图书信息管理</el-menu-item>
+                <el-menu-item index="/admin/book/book-borrowing/list">图书借阅管理</el-menu-item>
+                <el-menu-item index="/admin/book/book-return/list">图书归还管理</el-menu-item>
+                <el-menu-item index="/admin/book/book-type/list">图书分类管理</el-menu-item>
+                <el-menu-item index="/admin/book/book-use-record/list">图书使用记录</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">读者管理</template>
-                <el-menu-item index="/reader/reader-info/list">读者信息管理</el-menu-item>
+                <el-menu-item index="/admin/reader/reader-info/list">读者信息管理</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
                 <template slot="title">社区管理</template>
-                <el-menu-item index="/community/community-info/list">社区信息管理</el-menu-item>
-                <el-menu-item index="/community/notice/list">公告管理</el-menu-item>
+                <el-menu-item index="/admin/community/community-info/list">社区信息管理</el-menu-item>
+                <el-menu-item index="/admin/community/notice/list">公告管理</el-menu-item>
 
             </el-submenu>
             <el-submenu index="5">
@@ -35,7 +35,7 @@
             return {}
         },
         created:function(){
-            this.$router.push('/core/dashboard'); // 页面加载时跳转
+            this.$router.push('/admin/core/dashboard'); // 页面加载时跳转
         },
         methods: {
             handleOpen(key, keyPath) {

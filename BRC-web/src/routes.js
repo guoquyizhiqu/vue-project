@@ -5,24 +5,24 @@
 
 
 
-import Login from './views/core/Login.vue'
-import Main from './views/core/Main.vue'
-import Dashboard from './views/core/Dashboard.vue'
+import Login from './views/admin/core/Login.vue'
+import Main from './views/admin/core/Main.vue'
+import Dashboard from './views/admin/core/Dashboard.vue'
 
-import BookInfoList from './views/book/bookInfo/List.vue'
-import BookBorrowingList from './views/book/bookBorrowing/List.vue'
-import BookReturnList from './views/book/bookReturn/List.vue'
-import BookTypeList from './views/book/bookType/List.vue'
-import BookUseRecordList from './views/book/bookUseRecord/List.vue'
+import BookInfoList from './views/admin/book/bookInfo/List.vue'
+import BookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
+import BookReturnList from './views/admin/book/bookReturn/List.vue'
+import BookTypeList from './views/admin/book/bookType/List.vue'
+import BookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
 
-import CommunityInfoList from './views/community/communityinfo/List.vue'
-import NoticeList from './views/community/notice/List.vue'
-import ReaderInfoList from './views/reader/readerInfo/List.vue'
+import CommunityInfoList from './views/admin/community/communityinfo/List.vue'
+import NoticeList from './views/admin/community/notice/List.vue'
+import ReaderInfoList from './views/admin/reader/readerInfo/List.vue'
 
-import UserList from './views/basic/user/List.vue'
-import UserCreate from './views/basic/user/Create.vue'
-import UserDetail from './views/basic/user/Detail.vue'
-import UserEdit from './views/basic/user/Edit.vue'
+import UserList from './views/admin/basic/user/List.vue'
+import UserCreate from './views/admin/basic/user/Create.vue'
+import UserDetail from './views/admin/basic/user/Detail.vue'
+import UserEdit from './views/admin/basic/user/Edit.vue'
 
 let routes = [
     {
@@ -35,23 +35,23 @@ let routes = [
         component:Main,
         name:'Main',
         children: [
-            { path: '/core/dashboard', component: Dashboard, name: 'dashboard' },
+            { path: '/admin/core/dashboard', component: Dashboard, name: 'admin-dashboard' },
 
-            { path: '/basic/user/list', component: UserList, name: 'user-list' },
-            { path: '/basic/user/create', component: UserCreate, name: 'user-create' },
-            { path: '/basic/user/detail/:userId', component: UserDetail, name: 'user-detail' },
-            { path: '/basic/user/edit/:userId', component: UserEdit, name: 'user-edit' },
+            { path: '/admin/basic/user/list', component: UserList, name: 'admin-user-list' },
+            { path: '/admin/basic/user/create', component: UserCreate, name: 'admin-user-create' },
+            { path: '/admin/basic/user/detail/:userId', component: UserDetail, name: 'admin-user-detail' },
+            { path: '/admin/basic/user/edit/:userId', component: UserEdit, name: 'admin-user-edit' },
 
-            { path: '/book/book-info/list', component: BookInfoList, name: 'book-list' },
-            { path: '/book/book-borrowing/list', component: BookBorrowingList, name: 'book-borrowing-list' },
-            { path: '/book/book-return/list', component: BookReturnList, name: 'book-return-list' },
-            { path: '/book/book-type/list', component: BookTypeList, name: 'book-type-list' },
-            { path: '/book/book-use-record/list', component: BookUseRecordList, name: 'book-use-record-list' },
+            { path: '/admin/book/book-info/list', component: BookInfoList, name: 'admin-book-list' },
+            { path: '/admin/book/book-borrowing/list', component: BookBorrowingList, name: 'admin-book-borrowing-list' },
+            { path: '/admin/book/book-return/list', component: BookReturnList, name: 'admin-book-return-list' },
+            { path: '/admin/book/book-type/list', component: BookTypeList, name: 'admin-book-type-list' },
+            { path: '/admin/book/book-use-record/list', component: BookUseRecordList, name: 'admin-book-use-record-list' },
 
-            { path: '/community/community-info/list', component: CommunityInfoList, name: 'community-info-list' },
-            { path: '/community/notice/list', component: NoticeList, name: 'notice-list' },
+            { path: '/admin/community/community-info/list', component: CommunityInfoList, name: 'admin-community-info-list' },
+            { path: '/admin/community/notice/list', component: NoticeList, name: 'admin-notice-list' },
 
-            { path: '/reader/reader-info/list', component: ReaderInfoList, name: 'reader-info-list' },
+            { path: '/admin/reader/reader-info/list', component: ReaderInfoList, name: 'admin-reader-info-list' },
         ]
     }
 ];

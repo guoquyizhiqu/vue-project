@@ -2,11 +2,11 @@
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
             <el-breadcrumb-item>社区管理</el-breadcrumb-item>
-            <el-breadcrumb-item>公告管理</el-breadcrumb-item>
+            <el-breadcrumb-item>社区信息管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入公告"  class="input-with-select">
+                <el-input placeholder="请输入社区名称"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -20,9 +20,7 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="noticeContent" label="公告内容" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="是否置顶" sortable width="180"></el-table-column>
+                    <el-table-column prop="communityName" label="社区名称" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -59,7 +57,7 @@
 
 <script>
 
-    import  { notices } from '../../../module/community/notice';
+    import  { communityInfos } from '../../../../module/admin/community/communityInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -79,7 +77,7 @@
 
             let _this = this;
             this.$nextTick(function () {
-                _this.listUserData = notices();
+                _this.listUserData = communityInfos();
                 _this.loading = false;
 
                /* bookInfos().then(bookInfos => {

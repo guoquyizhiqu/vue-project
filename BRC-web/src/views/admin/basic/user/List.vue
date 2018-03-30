@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
-            <el-breadcrumb-item>图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书信息管理</el-breadcrumb-item>
-        </el-breadcrumb>
+        <el-breadcrumb-item>基础信息管理</el-breadcrumb-item>
+        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入图书名称"  class="input-with-select">
+                <el-input placeholder="请输入用户名"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -18,16 +18,10 @@
             <el-col :span="24">
                 <el-table :data="listUserData" border style="width: 100%" v-loading="loading"
                           max-height="480"
-                          :default-sort="{prop: 'date', order: 'descending'}"
+                        :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" width="130"></el-table-column>
-                    <el-table-column prop="---" label="出版社" width="130"></el-table-column>
-                    <el-table-column prop="---" label="出版时间" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="作者" width="100"></el-table-column>
-                    <el-table-column prop="---" label="价格" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="分类" width="130"></el-table-column>
-                    <el-table-column prop="---" label="创建时间" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="创建人" width="130"></el-table-column>
+                    <el-table-column prop="username" label="用户姓名" sortable width="180"></el-table-column>
+                    <el-table-column prop="registerDate" label="联系电话" sortable width="180"> </el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -63,8 +57,8 @@
 </template>
 
 <script>
-
-    import  { bookInfos } from '../../../module/book/bookInfo';
+    /*import {users} from '../../../api/api';*/
+   import  { users } from '../../../../module/user';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -81,17 +75,14 @@
             }
         },
         mounted () {
-
             let _this = this;
+            console.log(this)
             this.$nextTick(function () {
-                _this.listUserData = bookInfos();
-                _this.loading = false;
-
-               /* bookInfos().then(bookInfos => {
-                    console.log("-------------------->>")
-                    _this.listUserData = bookInfos;
+                users().then(users => {
+                    console.log(users)
+                    _this.listUserData = users;
                     _this.loading = false;
-                })*/
+                })
             })
         },
         methods: {
@@ -116,7 +107,7 @@
                 })
             },
             deleteRow(index, rows) {
-                this.$confirm('是否删除该图书?', '提示', {
+                this.$confirm('是否删除该用户?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

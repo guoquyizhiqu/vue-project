@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import {getUser} from '../../../api/api';
+    import {getUser} from '../../../../api/api';
     export default {
         data() {
             return{

@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
-            <el-breadcrumb-item>读者管理</el-breadcrumb-item>
-            <el-breadcrumb-item>读者信息管理</el-breadcrumb-item>
+            <el-breadcrumb-item>图书管理</el-breadcrumb-item>
+            <el-breadcrumb-item>图书信息管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
-                <el-input placeholder="请输入读者名称"  class="input-with-select">
+                <el-input placeholder="请输入图书名称"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
             </el-col>
@@ -20,11 +20,14 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="readerName" label="读者名称" width="180"></el-table-column>
-                    <el-table-column prop="---" label="性别" width="180"></el-table-column>
-                    <el-table-column prop="---" label="年龄" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="学号" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="bookName" label="图书名称" width="130"></el-table-column>
+                    <el-table-column prop="---" label="出版社" width="130"></el-table-column>
+                    <el-table-column prop="---" label="出版时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="作者" width="100"></el-table-column>
+                    <el-table-column prop="---" label="价格" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="分类" width="130"></el-table-column>
+                    <el-table-column prop="---" label="创建时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="---" label="创建人" width="130"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -61,7 +64,7 @@
 
 <script>
 
-    import  { readerInfos } from '../../../module/reader/readerInfo';
+    import  { bookInfos } from '../../../../module/admin/book/bookInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -81,7 +84,7 @@
 
             let _this = this;
             this.$nextTick(function () {
-                _this.listUserData = readerInfos();
+                _this.listUserData = bookInfos();
                 _this.loading = false;
 
                /* bookInfos().then(bookInfos => {

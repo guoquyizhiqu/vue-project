@@ -59,7 +59,7 @@
 
 <script>
 
-    import  { bookBorrowings } from '../../../module/book/bookBorrowing';
+    import  { bookBorrowings } from '../../../../module/admin/book/bookBorrowing';
     import { Message } from 'element-ui';
     export default {
         data () {
