@@ -1,7 +1,7 @@
 <template>
     <div class="login">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="login-panel">
-        <h3 class="title">汶鑫智能管理系统登录</h3>
+        <h3 class="title">xxx管理系统登录</h3>
         <el-form-item prop="account">
             <el-input type="text" v-model="ruleForm.account" placeholder="账号"></el-input>
         </el-form-item>

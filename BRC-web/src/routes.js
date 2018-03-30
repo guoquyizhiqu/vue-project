@@ -26,9 +26,9 @@ import UserEdit from './views/admin/basic/user/Edit.vue'
 
 let routes = [
     {
-        path: '/login',
+        path: '/admin/login',
         component: Login,
-        name:'login'
+        name:'admin-login'
     },
     {
         path: '/',
