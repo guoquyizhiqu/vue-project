@@ -63,7 +63,7 @@ let routes = [
         component: ReaderMain,
         name:'reader-main',
         children: [
-            { path: '/admin/core/dashboard', component: AdminDashboard, name: 'admin-dashboard' },
+            { path: '/reader/core', component: ReaderMain, name: 'reader-main' },
         ]
     },
 ];
