@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin: 30px 0 0 0">
         <el-card class="box-card">
             <div slot="header">
                 <span>新书推荐</span>

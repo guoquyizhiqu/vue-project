@@ -6,5 +6,4 @@
             </el-input>
         </el-col>
     </el-row>
-
 </template>

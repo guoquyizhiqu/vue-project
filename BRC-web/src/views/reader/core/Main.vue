@@ -36,10 +36,9 @@
         background-color: #E9EEF3;
     }
     .reader-main-header {
-        margin: 0 0 30px 0;
     }
     .reader-main-aside {
-        background-color: #ffffff;
+
     }
     .reader-main-content {
 
