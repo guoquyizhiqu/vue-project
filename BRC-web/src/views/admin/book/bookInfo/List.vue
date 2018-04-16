@@ -33,10 +33,10 @@
                             <div id="button">
                                 <el-button
                                         size="small"
-                                        @click="handleMethod(scope.row, 'user-edit')">编辑</el-button>
+                                        @click="handleMethod(scope.row, 'admin-book-info-edit')">编辑</el-button>
                                 <el-button
                                         size="small"
-                                        @click="handleMethod(scope.row, 'user-detail')">详情</el-button>
+                                        @click="handleMethod(scope.row, 'admin-book-info-detail')">详情</el-button>
                                 <el-button
                                         size="small"
                                         @click="deleteRow(scope.row, listUserData)">删除</el-button>
@@ -102,17 +102,18 @@
                 console.log(`当前页: ${val}`);
             },
             handleMethod(user, name) {
-                let userId = user.id;
+
+                /*let userId = user.id;*/
                 this.$router.push({
                     name:name,
-                    params: {
+                 /*   params: {
                         userId: userId
-                    }
+                    }*/
                 })
             },
             toCreate() {
                 this.$router.push({
-                    name: "user-create"
+                    name: "admin-book-info-create"
                 })
             },
             deleteRow(index, rows) {

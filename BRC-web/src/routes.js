@@ -10,6 +10,10 @@ import AdminMain from './views/admin/core/Main.vue'
 import AdminDashboard from './views/admin/core/Dashboard.vue'
 
 import AdminBookInfoList from './views/admin/book/bookInfo/List.vue'
+import AdminBookInfoCreate from './views/admin/book/bookInfo/Create.vue'
+import AdminBookInfoEdit from './views/admin/book/bookInfo/Edit.vue'
+import AdminBookInfoDetail from './views/admin/book/bookInfo/Detail.vue'
+
 import AdminBookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
 import AdminBookReturnList from './views/admin/book/bookReturn/List.vue'
 import AdminBookTypeList from './views/admin/book/bookType/List.vue'
@@ -46,7 +50,10 @@ let routes = [
             { path: '/admin/basic/user/detail/:userId', component: AdminUserDetail, name: 'admin-user-detail' },
             { path: '/admin/basic/user/edit/:userId', component: AdminUserEdit, name: 'admin-user-edit' },
 
-            { path: '/admin/book/book-info/list', component: AdminBookInfoList, name: 'admin-book-list' },
+            { path: '/admin/book/book-info/list', component: AdminBookInfoList, name: 'admin-book-info-list' },
+            { path: '/admin/book/book-info/create', component: AdminBookInfoCreate, name: 'admin-book-info-create' },
+            { path: '/admin/book/book-info/edit', component: AdminBookInfoEdit, name: 'admin-book-info-edit' },
+            { path: '/admin/book/book-info/detail', component: AdminBookInfoDetail, name: 'admin-book-info-detail' },
             { path: '/admin/book/book-borrowing/list', component: AdminBookBorrowingList, name: 'admin-book-borrowing-list' },
             { path: '/admin/book/book-return/list', component: AdminBookReturnList, name: 'admin-book-return-list' },
             { path: '/admin/book/book-type/list', component: AdminBookTypeList, name: 'admin-book-type-list' },

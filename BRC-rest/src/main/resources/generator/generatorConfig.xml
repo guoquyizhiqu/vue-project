@@ -62,5 +62,12 @@
                enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>
+        <table tableName="bookinfo"
+               domainObjectName="BookInfo"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
     </context>
 </generatorConfiguration>

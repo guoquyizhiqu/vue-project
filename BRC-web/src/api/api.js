@@ -1,20 +1,22 @@
 /**
- * Created by liu on 12/10/2017.
+ * Created by xing on 12/10/2017.
  */
 
 import axios from 'axios';
+import qs from 'qs'
 
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 
 axios.interceptors.request.use(function (config){
+    config.data = qs.stringify(config.data);
     // 处理请求之前的配置
     if(config.method === 'post') {
         //post 提交时，将对象转换为string, 为处理Java后台解析问题
-        config.data = JSON.stringify(config.data)
+        /*  config.data = JSON.stringify(config.data)*/
     } else if(config.method === 'get') {
         // 给GET 请求后追加时间戳， 解决IE ajax 请求缓存问题
-        let symbol = config.url.indexOf("?") > 0 ? '&' : '?';
-        config.url += symbol + Date.now();
+        /*        let symbol = config.url.indexOf("?") > 0 ? '&' : '?';
+         config.url += symbol + Date.now();*/
     }
     return config;
 }, function (error){
@@ -84,39 +86,37 @@ export const getEquipments = params => {
 };
 
 export const users = params => {
-    return axios.post(`${base}/user/list`, {page:"1",size: "5"}).then(user => {
-        console.log(user.data.data.list)
-        return user.data.data.list})
+    return axios.get(`${base}/users`).then(user => user.data)
 };
 
 export const getUser = params => {
     return axios.get(`${base}/getUser`, params).then(user => {
-        console.log(user.data.list)
+        console.log(user.data)
         return user.data})
 };
 
 /*
-export const create = params => {
-    return axios.post(`${base}/rfc/create`, JSON.stringify(params), {
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        }
-    }).then(res => res.data)
-};
+ export const create = params => {
+ return axios.post(`${base}/rfc/create`, JSON.stringify(params), {
+ headers: {
+ 'Content-Type': 'application/json;charset=UTF-8'
+ }
+ }).then(res => res.data)
+ };
 
 
-export const listRFC = params => {
-    return axios.get(`${base}/rfc/list`, params).then(res => res.data)
-};
+ export const listRFC = params => {
+ return axios.get(`${base}/rfc/list`, params).then(res => res.data)
+ };
 
-export const getRFC = params => {
-    return axios.get(`${base}/rfc/get`, params).then(res => res.data)
-};
+ export const getRFC = params => {
+ return axios.get(`${base}/rfc/get`, params).then(res => res.data)
+ };
 
-export const listGBM = () => {
-    return axios.get(`${base}/rfc/gbm`).then(res => res.data)
-};
+ export const listGBM = () => {
+ return axios.get(`${base}/rfc/gbm`).then(res => res.data)
+ };
 
-export  const ListJobs = () => {
-    return axios.get(`${base}/rfc/jobs`).then(res => res.data);
-};*/
+ export  const ListJobs = () => {
+ return axios.get(`${base}/rfc/jobs`).then(res => res.data);
+ };*/

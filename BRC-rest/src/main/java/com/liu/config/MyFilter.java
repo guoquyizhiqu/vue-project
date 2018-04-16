@@ -32,6 +32,7 @@ public class MyFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD"); // or *
         // response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type, MUserAgent, MToken, UID"); // or *
+        System.out.println("------------------->>1111");
         chain.doFilter(req, res);
     }
 

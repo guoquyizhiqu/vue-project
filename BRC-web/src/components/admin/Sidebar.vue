@@ -20,6 +20,10 @@
 
             </el-submenu>
             <el-submenu index="5">
+                <template slot="title">测试模块</template>
+                <el-menu-item index="/admin/basic/user/list">用户</el-menu-item>
+            </el-submenu>
+            <el-submenu index="6">
                 <template slot="title">预备模块</template>
                 <el-menu-item index="5-1">选项4-1</el-menu-item>
             </el-submenu>

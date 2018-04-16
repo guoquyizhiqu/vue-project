@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liu.dao.BookInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liu.model.BookInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="bookname" property="bookName" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="publishtime" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="createtime" property="createtTime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="booktype" property="bookType" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="borrowingstatus" property="borrowingStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bookname, publisher, publishtime, author, price, createtime, updatetime, booktype, 
+    creater, borrowingstatus
+  </sql>
+
+  <insert id="insert" parameterType="com.liu.model.BookInfo" >
+    insert into bookinfo (id, bookname, publisher, 
+      publishtime, author, price, 
+      createtime, updatetime, booktype, 
+      creater, borrowingstatus)
+    values (#{id,jdbcType=VARCHAR}, #{bookname,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{publishtime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{booktype,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{borrowingstatus,jdbcType=INTEGER})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.liu.model.BookInfo" >
+    insert into bookinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bookname != null" >
+        bookname,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="publishtime != null" >
+        publishtime,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="booktype != null" >
+        booktype,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="borrowingstatus != null" >
+        borrowingstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bookname != null" >
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="booktype != null" >
+        #{booktype,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowingstatus != null" >
+        #{borrowingstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectAllBookInfo" resultMap="BaseResultMap">
+    select
+    *
+    from bookInfo
+  </select>
+  <select id="findById"  resultType="com.liu.model.BookInfo" parameterType="java.lang.String">
+    select
+    *
+    from user id = #{id}
+  </select>
+</mapper>
