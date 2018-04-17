@@ -14,9 +14,14 @@ import AdminBookInfoCreate from './views/admin/book/bookInfo/Create.vue'
 import AdminBookInfoEdit from './views/admin/book/bookInfo/Edit.vue'
 import AdminBookInfoDetail from './views/admin/book/bookInfo/Detail.vue'
 
+import AdminBookTypeList from './views/admin/book/bookType/List.vue'
+import AdminBookTypeCreate from './views/admin/book/bookType/Create.vue'
+import AdminBookTypeEdit from './views/admin/book/bookType/Edit.vue'
+import AdminBookTypeDetail from './views/admin/book/bookType/Detail.vue'
+
 import AdminBookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
 import AdminBookReturnList from './views/admin/book/bookReturn/List.vue'
-import AdminBookTypeList from './views/admin/book/bookType/List.vue'
+
 import AdminBookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
 
 import AdminCommunityInfoList from './views/admin/community/communityinfo/List.vue'
@@ -54,9 +59,15 @@ let routes = [
             { path: '/admin/book/book-info/create', component: AdminBookInfoCreate, name: 'admin-book-info-create' },
             { path: '/admin/book/book-info/edit', component: AdminBookInfoEdit, name: 'admin-book-info-edit' },
             { path: '/admin/book/book-info/detail', component: AdminBookInfoDetail, name: 'admin-book-info-detail' },
+
+            { path: '/admin/book/book-type/list', component: AdminBookTypeList, name: 'admin-book-type-list' },
+            { path: '/admin/book/book-type/create', component: AdminBookTypeCreate, name: 'admin-book-type-create' },
+            { path: '/admin/book/book-type/edit', component: AdminBookTypeEdit, name: 'admin-book-type-edit' },
+            { path: '/admin/book/book-type/detail', component: AdminBookTypeDetail, name: 'admin-book-type-detail' },
+
             { path: '/admin/book/book-borrowing/list', component: AdminBookBorrowingList, name: 'admin-book-borrowing-list' },
             { path: '/admin/book/book-return/list', component: AdminBookReturnList, name: 'admin-book-return-list' },
-            { path: '/admin/book/book-type/list', component: AdminBookTypeList, name: 'admin-book-type-list' },
+
             { path: '/admin/book/book-use-record/list', component: AdminBookUseRecordList, name: 'admin-book-use-record-list' },
 
             { path: '/admin/community/community-info/list', component: AdminCommunityInfoList, name: 'admin-community-info-list' },

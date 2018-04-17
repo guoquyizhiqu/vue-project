@@ -8,9 +8,9 @@ import qs from 'qs'
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 
 axios.interceptors.request.use(function (config){
-    config.data = qs.stringify(config.data);
     // 处理请求之前的配置
     if(config.method === 'post') {
+        config.data = qs.stringify(config.data);
         //post 提交时，将对象转换为string, 为处理Java后台解析问题
         /*  config.data = JSON.stringify(config.data)*/
     } else if(config.method === 'get') {

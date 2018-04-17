@@ -1,5 +1,7 @@
 package com.liu.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class BookInfo {
@@ -9,7 +11,7 @@ public class BookInfo {
 
     private String publisher;
 
-    private Date publishTime;
+    private String publishTime;
 
     private String author;
 
@@ -30,7 +32,7 @@ public class BookInfo {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     public String getBookName() {
@@ -38,7 +40,7 @@ public class BookInfo {
     }
 
     public void setBookName(String bookName) {
-        this.bookName = bookName;
+        this.bookName = bookName == null ? null : bookName.trim();
     }
 
     public String getPublisher() {
@@ -46,14 +48,14 @@ public class BookInfo {
     }
 
     public void setPublisher(String publisher) {
-        this.publisher = publisher;
+        this.publisher = publisher == null ? null : publisher.trim();
     }
 
-    public Date getPublishTime() {
+    public String getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(String publishTime) {
         this.publishTime = publishTime;
     }
 
@@ -62,7 +64,7 @@ public class BookInfo {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = author == null ? null : author.trim();
     }
 
     public Float getPrice() {
@@ -94,7 +96,7 @@ public class BookInfo {
     }
 
     public void setBookType(String bookType) {
-        this.bookType = bookType;
+        this.bookType = bookType == null ? null : bookType.trim();
     }
 
     public String getCreater() {
@@ -102,7 +104,7 @@ public class BookInfo {
     }
 
     public void setCreater(String creater) {
-        this.creater = creater;
+        this.creater = creater == null ? null : creater.trim();
     }
 
     public Integer getBorrowingStatus() {
@@ -111,5 +113,22 @@ public class BookInfo {
 
     public void setBorrowingStatus(Integer borrowingStatus) {
         this.borrowingStatus = borrowingStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "BookInfo{" +
+                "id='" + id + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", publishTime=" + publishTime +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", bookType='" + bookType + '\'' +
+                ", creater='" + creater + '\'' +
+                ", borrowingStatus=" + borrowingStatus +
+                '}';
     }
 }

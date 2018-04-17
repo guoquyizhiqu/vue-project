@@ -11,17 +11,17 @@ export const bookInfos = params => {
 };
 
 export const create = params => {
-    /*const bookInfo = {
-        bookName: '',
-        publisher: '',
-        publishTime: new Date(),
-        author: '',
-        price: '',
-        bookTypeName: '',
-    };*/
+    const bookInfo = {
+        bookName: '张三',
+        publisher: '2',
+  /*      publishTime: new Date(),*/
+        author: '43',
+        price: '4',
+        bookTypeName: '5',
+    };
     return axios({
         method: 'post',
-        url: '/api/user/add',
+        url: '/api/book-info/add',
         data: params,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

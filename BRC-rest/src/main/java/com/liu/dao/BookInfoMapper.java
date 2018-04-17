@@ -5,10 +5,17 @@ import com.liu.model.BookInfo;
 import java.util.List;
 
 public interface BookInfoMapper {
-    boolean insertSelective(BookInfo bookInfo);
+    int deleteByPrimaryKey(String id);
+
+    int insert(BookInfo record);
+
+    int insertSelective(BookInfo record);
+
+    BookInfo selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(BookInfo record);
+
+    int updateByPrimaryKey(BookInfo record);
 
     List<BookInfo> selectAllBookInfo();
-
-    /*  @Select("SELECT * FROM user WHERE id = #{id}")*/
-    BookInfo findById(String id);
 }

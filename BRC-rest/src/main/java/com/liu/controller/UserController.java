@@ -26,7 +26,8 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public String addUser(HttpServletRequest req, User user) {
-        userService.addUser(user);
+        System.out.print("------------------");
+        /*userService.addUser(user);*/
         return "success";
     }
 

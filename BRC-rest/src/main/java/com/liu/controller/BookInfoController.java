@@ -17,7 +17,7 @@ import java.util.List;
  * Created by liu on 2018/3/26.
  */
 @RestController
-@RequestMapping(value = "/bookInfo")
+@RequestMapping(value = "/book-info")
 public class BookInfoController {
 
     @Autowired
@@ -26,7 +26,9 @@ public class BookInfoController {
     @ResponseBody
     @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public String addBookInfo(HttpServletRequest req, BookInfo bookInfo) {
-        bookInfoService.addBookInfo(bookInfo);
+        System.out.print("------------------>");
+       /* System.out.print("------------------>"+bookInfo.toString());
+      bookInfoService.addBookInfo(bookInfo);*/
         return "success";
     }
 
