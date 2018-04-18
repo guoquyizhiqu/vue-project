@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.liu.dao.BookTypeMapper" >
-  <resultMap id="BaseResultMap" type="com.liu.model.BookType" >
+<mapper namespace="com.liu.dao.CommunityInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liu.model.CommunityInfo" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.liu.model.BookType" extends="BaseResultMap" >
-    <result column="remark" property="remark" jdbcType="VARBINARY" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, create_time, update_time, creater
+    id, name, create_time, update_time, creater, remark
   </sql>
-  <sql id="Blob_Column_List" >
-    remark
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from book_type
+    from community_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteById" parameterType="java.lang.String" >
-    delete from book_type
+    delete from community_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.liu.model.BookType" >
-    insert into book_type (id, name, create_time,
+  <insert id="insert" parameterType="com.liu.model.CommunityInfo" >
+    insert into community_info (id, name, create_time, 
       update_time, creater, remark
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-      #{updateTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{remark,jdbcType=VARBINARY}
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="save" parameterType="com.liu.model.BookType" >
-    insert into book_type
+  <insert id="save" parameterType="com.liu.model.CommunityInfo" >
+    insert into community_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-        id,
+      id,
       <if test="name != null" >
         name,
       </if>
@@ -72,36 +65,49 @@
         #{creater,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
-        #{remark,jdbcType=VARBINARY},
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="edit" parameterType="com.liu.model.BookType" >
-    update book_type
+  <update id="edit" parameterType="com.liu.model.CommunityInfo" >
+    update community_info
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
-        remark = #{remark,jdbcType=VARBINARY},
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-
-
+  <update id="updateByPrimaryKey" parameterType="com.liu.model.CommunityInfo" >
+    update community_info
+    set name = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
   <select id="findById" parameterType="java.lang.String">
     select
     *
-    from book_type where id=#{id,jdbcType=VARCHAR}
+    from community_info where id=#{id,jdbcType=VARCHAR}
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">
     select
     *
-    from book_type
+    from community_info
   </select>
 </mapper>

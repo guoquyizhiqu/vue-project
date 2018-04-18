@@ -9,7 +9,11 @@ public interface BookInfoMapper {
 
     int insert(BookInfo record);
 
-    int insertSelective(BookInfo record);
+    Boolean edit(BookInfo bookInfo);
+
+    boolean deleteById(String id);
+
+    boolean insertSelective(BookInfo record);
 
     BookInfo selectByPrimaryKey(String id);
 

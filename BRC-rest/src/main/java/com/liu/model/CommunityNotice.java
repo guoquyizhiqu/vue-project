@@ -2,18 +2,18 @@ package com.liu.model;
 
 import java.util.Date;
 
-public class BookType {
+public class CommunityNotice {
     private String id;
 
-    private String name;
+    private String communityInfoId;
+
+    private String content;
 
     private Date createTime;
 
     private Date updateTime;
 
     private String creater;
-
-    private String remark;
 
     public String getId() {
         return id;
@@ -23,12 +23,20 @@ public class BookType {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getCommunityInfoId() {
+        return communityInfoId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setCommunityInfoId(String communityInfoId) {
+        this.communityInfoId = communityInfoId == null ? null : communityInfoId.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Date getCreateTime() {
@@ -53,13 +61,5 @@ public class BookType {
 
     public void setCreater(String creater) {
         this.creater = creater == null ? null : creater.trim();
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 }

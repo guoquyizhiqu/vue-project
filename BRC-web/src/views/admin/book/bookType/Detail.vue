@@ -7,10 +7,10 @@
         </el-breadcrumb>
         <el-col :span="6" :offset="9" style="padding-top: 80px">
             <el-form ref="user" :model="form" label-width="120px" class="detail"  v-loading="loading">
-                <el-form-item label="用户名：">
+                <el-form-item label="类型名称：">
                     {{form.name}}
                 </el-form-item>
-                <el-form-item label="地址：">
+                <el-form-item label="描述：">
                     {{form.remark}}
                 </el-form-item>
 

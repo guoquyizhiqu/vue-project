@@ -21,13 +21,13 @@
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
                     <el-table-column prop="bookName" label="图书名称" width="130"></el-table-column>
-                    <el-table-column prop="---" label="出版社" width="130"></el-table-column>
-                    <el-table-column prop="---" label="出版时间" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="作者" width="100"></el-table-column>
-                    <el-table-column prop="---" label="价格" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="分类" width="130"></el-table-column>
-                    <el-table-column prop="---" label="创建时间" sortable width="130"></el-table-column>
-                    <el-table-column prop="---" label="创建人" width="130"></el-table-column>
+                    <el-table-column prop="publisher" label="出版社" width="130"></el-table-column>
+                    <el-table-column prop="publishTime" label="出版时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="author" label="作者" width="100"></el-table-column>
+                    <el-table-column prop="price" label="价格" sortable width="130"></el-table-column>
+                    <el-table-column prop="bookType" label="分类" width="130"></el-table-column>
+                    <el-table-column prop="createTime" label="创建时间" sortable width="130"></el-table-column>
+        <!--            <el-table-column prop="-&#45;&#45;" label="创建人" width="130"></el-table-column>-->
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -52,10 +52,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage4"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="filter.pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
+                        :total="total">
                 </el-pagination>
             </el-col>
         </el-row>
@@ -64,7 +64,7 @@
 
 <script>
 
-    import  { bookInfos } from '../../../../module/admin/book/bookInfo';
+    import  { getBookInfos, remove } from '../../../../module/admin/book/bookInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -74,41 +74,33 @@
                 loading: true,
                 visible2: false,
                 filter: {
-                    page: '',
-                    size: '',
+                    pageNum: 1,
+                    pageSize: 10,
                 },
-                currentPage4: 4
+                total: 0,
+                currentPage4: 1,
             }
         },
         mounted () {
-
             let _this = this;
-            this.$nextTick(function () {
-                _this.listUserData = bookInfos();
-                _this.loading = false;
-
-               /* bookInfos().then(bookInfos => {
-                    console.log("-------------------->>")
-                    _this.listUserData = bookInfos;
-                    _this.loading = false;
-                })*/
-            })
+            getBookInfos(_this);
         },
         methods: {
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.filter.pageSize = val;
+                getBookInfos(this);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
+                this.filter.pageNum = val;
+                getBookInfos(this);
             },
-            handleMethod(user, name) {
-
-                /*let userId = user.id;*/
+            handleMethod(bookInfo, name) {
+                let bookInfoId = bookInfo.id;
                 this.$router.push({
                     name:name,
-                 /*   params: {
-                        userId: userId
-                    }*/
+                    params: {
+                        bookInfoId: bookInfoId
+                    }
                 })
             },
             toCreate() {
@@ -116,27 +108,28 @@
                     name: "admin-book-info-create"
                 })
             },
-            deleteRow(index, rows) {
-                this.$confirm('是否删除该图书?', '提示', {
+            deleteRow(row) {
+                let _this = this;
+                _this.$confirm('是否删除该图书?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        center: true,
-                        message: '删除成功!'
-                    });
-                    rows.splice(index, 1);
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        center: true,
-                        message: '已取消删除'
+                    remove(row.id).then(function (data) {
+                        _this.$message({
+                            type: 'success',
+                            center: true,
+                            message: '删除成功!'
+                        });
+                        getBookInfos(_this);
+                    }).catch(function (error) {
+                        _this.$message({
+                            type: 'info',
+                            center: true,
+                            message: '已取消删除'
+                        });
                     });
                 });
-
-
             }
         }
     }

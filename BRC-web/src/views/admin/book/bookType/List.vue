@@ -58,7 +58,7 @@
 
 <script>
 
-    import  { getbookTypes, remove } from '../../../../module/admin/book/bookType';
+    import  { getBookTypes, remove } from '../../../../module/admin/book/bookType';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -77,16 +77,16 @@
         },
         mounted () {
             let _this = this;
-            getbookTypes(_this);
+            getBookTypes(_this);
         },
         methods: {
             handleSizeChange(val) {
                 this.filter.pageSize = val;
-                getbookTypes(this);
+                getBookTypes(this);
             },
             handleCurrentChange(val) {
                 this.filter.pageNum = val;
-                getbookTypes(this);
+                getBookTypes(this);
             },
             handleMethod(bookType, name) {
                 let bookTypeId = bookType.id;
@@ -115,7 +115,7 @@
                            center: true,
                            message: '删除成功!'
                        });
-                       getbookTypes(_this);
+                       getBookTypes(_this);
                    }).catch(function (error) {
                        _this.$message({
                            type: 'info',

@@ -28,7 +28,7 @@ public class BookTypeController {
     @ResponseBody
     @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public String add(HttpServletRequest req, BookType bookType) {
-        bookType.setCreateDate(new Date());
+        bookType.setCreateTime(new Date());
         bookTypeService.add(bookType);
         return "success";
     }
@@ -36,7 +36,7 @@ public class BookTypeController {
     @ResponseBody
     @PostMapping(value = "/edit", produces = {"application/json;charset=UTF-8"})
     public String edit(HttpServletRequest req, BookType bookType) {
-        bookType.setUpdateDate(new Date());
+        bookType.setUpdateTime(new Date());
         bookTypeService.edit(bookType);
         return "success";
     }

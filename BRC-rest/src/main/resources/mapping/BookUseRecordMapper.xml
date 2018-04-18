@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liu.dao.BookUseRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.liu.model.BookUseRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="book_info_id" property="bookInfoId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="borrow_time" property="borrowTime" jdbcType="TIMESTAMP" />
+    <result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, book_info_id, account_id, borrow_time, return_time, create_time, update_time, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_use_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insert" parameterType="com.liu.model.BookUseRecord" >
+    insert into book_use_record (id, book_info_id, account_id, 
+      borrow_time, return_time, create_time, 
+      update_time, status)
+    values (#{id,jdbcType=VARCHAR}, #{bookInfoId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{borrowTime,jdbcType=TIMESTAMP}, #{returnTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="save" parameterType="com.liu.model.BookUseRecord" >
+    insert into book_use_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        id,
+      <if test="bookInfoId != null" >
+        book_info_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="borrowTime != null" >
+        borrow_time,
+      </if>
+      <if test="returnTime != null" >
+        return_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      UUID(),
+      <if test="bookInfoId != null" >
+        #{bookInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTime != null" >
+        #{borrowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnTime != null" >
+        #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="edit" parameterType="com.liu.model.BookUseRecord" >
+    update book_use_record
+    <set >
+      <if test="bookInfoId != null" >
+        book_info_id = #{bookInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTime != null" >
+        borrow_time = #{borrowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnTime != null" >
+        return_time = #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liu.model.BookUseRecord" >
+    update book_use_record
+    set book_info_id = #{bookInfoId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      borrow_time = #{borrowTime,jdbcType=TIMESTAMP},
+      return_time = #{returnTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from book_use_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <select id="findById" parameterType="java.lang.String">
+    select
+    *
+    from book_use_record where id=#{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    *
+    from book_use_record
+  </select>
+</mapper>

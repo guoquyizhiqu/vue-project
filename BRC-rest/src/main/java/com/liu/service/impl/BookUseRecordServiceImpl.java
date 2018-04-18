@@ -1,9 +1,9 @@
 package com.liu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.liu.dao.BookTypeMapper;
-import com.liu.model.BookType;
-import com.liu.service.BookTypeService;
+import com.liu.dao.BookUseRecordMapper;
+import com.liu.model.BookUseRecord;
+import com.liu.service.BookUseRecordService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,33 +12,33 @@ import java.util.List;
 /**
  * Created by liu on 2018/3/26.
  */
-@Service(value = "bookTypeService")
-public class BookTypeServiceImpl implements BookTypeService{
+@Service(value = "bookUseRecordService")
+public class BookUseRecordServiceImpl implements BookUseRecordService{
 
     @Resource
-    BookTypeMapper bookTypeDao;
+    BookUseRecordMapper bookUseRecordDao;
 
     @Override
-    public Boolean add(BookType bookType) {
-        Boolean flag = bookTypeDao.save(bookType);
+    public Boolean add(BookUseRecord bookUseRecord) {
+        Boolean flag = bookUseRecordDao.save(bookUseRecord);
         return flag;
     }
 
     @Override
-    public Boolean edit(BookType bookType) {
-        Boolean flag = bookTypeDao.edit(bookType);
+    public Boolean edit(BookUseRecord bookUseRecord) {
+        Boolean flag = bookUseRecordDao.edit(bookUseRecord);
         return flag;
     }
 
     @Override
     public Boolean deleteById(String id) {
-        Boolean flag = bookTypeDao.deleteById(id);
+        Boolean flag = bookUseRecordDao.deleteById(id);
         return flag;
     }
 
     @Override
-    public BookType findById(String id) {
-        return bookTypeDao.selectByPrimaryKey(id);
+    public BookUseRecord findById(String id) {
+        return bookUseRecordDao.selectByPrimaryKey(id);
     }
 
     /*
@@ -48,10 +48,10 @@ public class BookTypeServiceImpl implements BookTypeService{
    * pageSize 每页显示的数据条数
    * */
     @Override
-    public List<BookType> findAll(int pageNum, int pageSize) {
+    public List<BookUseRecord> findAll(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<BookType> list = bookTypeDao.selectAll();
+        List<BookUseRecord> list = bookUseRecordDao.selectAll();
 
         return list;
     }

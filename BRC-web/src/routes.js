@@ -20,6 +20,7 @@ import AdminBookTypeEdit from './views/admin/book/bookType/Edit.vue'
 import AdminBookTypeDetail from './views/admin/book/bookType/Detail.vue'
 
 import AdminBookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
+import AdminBookBorrowing from './views/admin/book/bookBorrowing/Borrowing.vue'
 import AdminBookReturnList from './views/admin/book/bookReturn/List.vue'
 
 import AdminBookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
@@ -27,6 +28,7 @@ import AdminBookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
 import AdminCommunityInfoList from './views/admin/community/communityinfo/List.vue'
 import AdminNoticeList from './views/admin/community/notice/List.vue'
 import AdminReaderInfoList from './views/admin/reader/readerInfo/List.vue'
+import AdminReaderInfoCreate from './views/admin/reader/readerInfo/Create.vue'
 
 import AdminUserList from './views/admin/basic/user/List.vue'
 import AdminUserCreate from './views/admin/basic/user/Create.vue'
@@ -66,6 +68,7 @@ let routes = [
             { path: '/admin/book/book-type/detail', component: AdminBookTypeDetail, name: 'admin-book-type-detail' },
 
             { path: '/admin/book/book-borrowing/list', component: AdminBookBorrowingList, name: 'admin-book-borrowing-list' },
+            { path: '/admin/book/book-borrowing', component: AdminBookBorrowing, name: 'admin-book-borrowing' },
             { path: '/admin/book/book-return/list', component: AdminBookReturnList, name: 'admin-book-return-list' },
 
             { path: '/admin/book/book-use-record/list', component: AdminBookUseRecordList, name: 'admin-book-use-record-list' },
@@ -74,6 +77,7 @@ let routes = [
             { path: '/admin/community/notice/list', component: AdminNoticeList, name: 'admin-notice-list' },
 
             { path: '/admin/reader/reader-info/list', component: AdminReaderInfoList, name: 'admin-reader-info-list' },
+            { path: '/admin/reader/reader-info/create', component: AdminReaderInfoCreate, name: 'admin-reader-info-create' },
         ]
     },
     {

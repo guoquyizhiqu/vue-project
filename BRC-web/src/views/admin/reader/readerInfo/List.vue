@@ -109,7 +109,7 @@
             },
             toCreate() {
                 this.$router.push({
-                    name: "user-create"
+                    name: "admin-reader-info-create"
                 })
             },
             deleteRow(index, rows) {

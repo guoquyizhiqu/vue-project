@@ -2,9 +2,8 @@ package com.liu.controller;
 
 
 import com.github.pagehelper.PageInfo;
-import com.liu.model.BookInfo;
-import com.liu.service.BookInfoService;
-import com.liu.tools.MyConstant;
+import com.liu.model.BookUseRecord;
+import com.liu.service.BookUseRecordService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,48 +14,50 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Created by liu on 2018/3/26.
  */
 @RestController
-@RequestMapping(value = "/book-info")
-public class BookInfoController {
+@RequestMapping(value = "/book-use-record")
+public class BookUseRecordController {
 
     @Autowired
-    private BookInfoService bookInfoService;
+    private BookUseRecordService bookUseRecordService;
 
     @ResponseBody
     @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
-    public String addBookInfo(HttpServletRequest req, BookInfo bookInfo) {
-        bookInfoService.addBookInfo(bookInfo);
+    public String add(HttpServletRequest req, BookUseRecord bookUseRecord) {
+        bookUseRecord.setCreateTime(new Date());
+        bookUseRecordService.add(bookUseRecord);
         return "success";
     }
 
     @ResponseBody
     @PostMapping(value = "/edit", produces = {"application/json;charset=UTF-8"})
-    public String edit(HttpServletRequest req, BookInfo bookInfo) {
-        bookInfo.setUpdateTime(new Date());
-        bookInfoService.edit(bookInfo);
+    public String edit(HttpServletRequest req, BookUseRecord bookUseRecord) {
+        bookUseRecord.setUpdateTime(new Date());
+        bookUseRecordService.edit(bookUseRecord);
         return "success";
     }
 
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"})
-    public PageInfo findAllBookInfo(int pageNum, int pageSize) {
-        List<BookInfo> list = bookInfoService.findAllBookInfo(pageNum, pageSize);
+    public PageInfo findAllBookUseRecord(int pageNum, int pageSize) {
+        List<BookUseRecord> list = bookUseRecordService.findAll(pageNum, pageSize);
         return new PageInfo(list);
     }
 
     @RequestMapping(value = "/detail", produces = {"application/json;charset=UTF-8"})
-    public BookInfo findBookInfo(String id) {
-        BookInfo bookInfo = bookInfoService.findById(id);
-        return bookInfo;
+    public BookUseRecord findBookUseRecord(String id) {
+        BookUseRecord bookUseRecord = bookUseRecordService.findById(id);
+        return bookUseRecord;
     }
 
     @ResponseBody
     @PostMapping(value = "/delete", produces = {"application/json;charset=UTF-8"})
     public String del(String id) {
-        bookInfoService.deleteById(id);
+        bookUseRecordService.deleteById(id);
         return "success";
     }
 }

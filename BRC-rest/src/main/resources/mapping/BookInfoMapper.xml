@@ -21,15 +21,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from bookinfo
+    from book_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from bookinfo
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from book_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.liu.model.BookInfo" >
-    insert into bookinfo (id, book_name, publisher, 
+    insert into book_info (id, book_name, publisher,
       publish_time, author, price, 
       create_time, update_time, book_type, 
       creater, borrowing_status)
@@ -39,11 +39,9 @@
       #{creater,jdbcType=VARCHAR}, #{borrowingStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.liu.model.BookInfo" >
-    insert into bookinfo
+    insert into book_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
         id,
-      </if>
       <if test="bookName != null" >
         book_name,
       </if>
@@ -76,9 +74,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
+      UUID(),
       <if test="bookName != null" >
         #{bookName,jdbcType=VARCHAR},
       </if>
@@ -86,7 +82,7 @@
         #{publisher,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null" >
-        #{publishTime,jdbcType=DATE},
+        str_to_date(#{publishTime}, '%Y-%m-%d'),
       </if>
       <if test="author != null" >
         #{author,jdbcType=VARCHAR},
@@ -111,8 +107,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.liu.model.BookInfo" >
-    update bookinfo
+  <update id="edit" parameterType="com.liu.model.BookInfo" >
+    update book_info
     <set >
       <if test="bookName != null" >
         book_name = #{bookName,jdbcType=VARCHAR},
@@ -148,7 +144,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.liu.model.BookInfo" >
-    update bookinfo
+    update book_info
     set book_name = #{bookName,jdbcType=VARCHAR},
       publisher = #{publisher,jdbcType=VARCHAR},
       publish_time = #{publishTime,jdbcType=DATE},
@@ -163,8 +159,18 @@
   </update>
 
   <select id="selectAllBookInfo" resultMap="BaseResultMap">
-    select
-    *
-    from bookinfo
+    SELECT
+      bi.id AS id,
+      bi.book_name AS book_name,
+      bi.publisher AS publisher,
+      bi.publish_time AS publish_time,
+      bi.author AS author,
+      bi.price AS price,
+      bi.create_time AS create_time,
+      bi.update_time AS update_time,
+      bi.creater AS creater,
+      bi.borrowing_status AS borrowing_status,
+      bt.name AS book_type
+    FROM book_info bi LEFT JOIN book_type bt ON bi.book_type = bt.id
   </select>
 </mapper>

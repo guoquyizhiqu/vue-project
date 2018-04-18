@@ -75,6 +75,35 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
-        </table>-->
+        </table>
+        <table tableName="book_use_record"
+               domainObjectName="BookUseRecord"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        <table tableName="community_info"
+               domainObjectName="CommunityInfo"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        <table tableName="community_notice"
+               domainObjectName="CommunityNotice"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        <table tableName="reader"
+               domainObjectName="Account"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
+        -->
     </context>
 </generatorConfiguration>

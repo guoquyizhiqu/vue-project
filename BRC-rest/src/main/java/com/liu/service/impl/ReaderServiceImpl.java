@@ -1,9 +1,9 @@
 package com.liu.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.liu.dao.BookTypeMapper;
-import com.liu.model.BookType;
-import com.liu.service.BookTypeService;
+import com.liu.dao.ReaderMapper;
+import com.liu.model.Reader;
+import com.liu.service.ReaderService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,33 +12,33 @@ import java.util.List;
 /**
  * Created by liu on 2018/3/26.
  */
-@Service(value = "bookTypeService")
-public class BookTypeServiceImpl implements BookTypeService{
+@Service(value = "readerService")
+public class ReaderServiceImpl implements ReaderService{
 
     @Resource
-    BookTypeMapper bookTypeDao;
+    ReaderMapper readerDao;
 
     @Override
-    public Boolean add(BookType bookType) {
-        Boolean flag = bookTypeDao.save(bookType);
+    public Boolean add(Reader reader) {
+        Boolean flag = readerDao.save(reader);
         return flag;
     }
 
     @Override
-    public Boolean edit(BookType bookType) {
-        Boolean flag = bookTypeDao.edit(bookType);
+    public Boolean edit(Reader reader) {
+        Boolean flag = readerDao.edit(reader);
         return flag;
     }
 
     @Override
     public Boolean deleteById(String id) {
-        Boolean flag = bookTypeDao.deleteById(id);
+        Boolean flag = readerDao.deleteById(id);
         return flag;
     }
 
     @Override
-    public BookType findById(String id) {
-        return bookTypeDao.selectByPrimaryKey(id);
+    public Reader findById(String id) {
+        return readerDao.selectByPrimaryKey(id);
     }
 
     /*
@@ -48,10 +48,10 @@ public class BookTypeServiceImpl implements BookTypeService{
    * pageSize 每页显示的数据条数
    * */
     @Override
-    public List<BookType> findAll(int pageNum, int pageSize) {
+    public List<Reader> findAll(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<BookType> list = bookTypeDao.selectAll();
+        List<Reader> list = readerDao.selectAll();
 
         return list;
     }

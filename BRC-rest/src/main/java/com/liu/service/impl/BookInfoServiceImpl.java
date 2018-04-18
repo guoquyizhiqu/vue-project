@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.liu.dao.BookInfoMapper;
 import com.liu.model.BookInfo;
 import com.liu.service.BookInfoService;
+import com.liu.tools.MyConstant;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +22,23 @@ public class BookInfoServiceImpl implements BookInfoService{
 
     @Override
     public Boolean addBookInfo(BookInfo bookInfo) {
-        int flag = bookInfoDao.insertSelective(bookInfo);
-        return true;
+        bookInfo.setCreateTime(new Date());
+        bookInfo.setBorrowingStatus(MyConstant.BOOKINFO_RETURN);
+        Boolean flag = bookInfoDao.insertSelective(bookInfo);
+        return flag;
+    }
+
+
+    @Override
+    public Boolean edit(BookInfo bookInfo) {
+        Boolean flag = bookInfoDao.edit(bookInfo);
+        return flag;
+    }
+
+    @Override
+    public Boolean deleteById(String id) {
+        Boolean flag = bookInfoDao.deleteById(id);
+        return flag;
     }
 
     @Override

@@ -2,16 +2,13 @@
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
             <el-breadcrumb-item>图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书借用管理</el-breadcrumb-item>
+            <el-breadcrumb-item>图书借阅管理</el-breadcrumb-item>
         </el-breadcrumb>
         <el-row class="toolbar">
             <el-col :span="8">
                 <el-input placeholder="请输入图书名称"  class="input-with-select">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
-            </el-col>
-            <el-col :span="2" :offset="14">
-                <el-button type="primary" @click="toCreate()"><span style="padding: 0 5px">新&nbsp;增</span></el-button>
             </el-col>
         </el-row>
         <el-row>
@@ -20,21 +17,20 @@
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅人" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="bookName" label="图书名称" width="130"></el-table-column>
+                    <el-table-column prop="publisher" label="出版社" width="130"></el-table-column>
+                    <el-table-column prop="publishTime" label="出版时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="author" label="作者" width="90"></el-table-column>
+                    <el-table-column prop="price" label="价格" sortable width="90"></el-table-column>
+                    <el-table-column prop="bookType" label="分类" width="120"></el-table-column>
+                    <el-table-column prop="createTime" label="创建时间" sortable width="130"></el-table-column>
+        <!--            <el-table-column prop="-&#45;&#45;" label="创建人" width="130"></el-table-column>-->
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
                                 <el-button
                                         size="small"
-                                        @click="handleMethod(scope.row, 'user-edit')">编辑</el-button>
-                                <el-button
-                                        size="small"
-                                        @click="handleMethod(scope.row, 'user-detail')">详情</el-button>
-                                <el-button
-                                        size="small"
-                                        @click="deleteRow(scope.row, listUserData)">删除</el-button>
+                                        @click="handleMethod(scope.row, 'admin-book-borrowing')">借阅</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -47,10 +43,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage4"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="filter.pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
+                        :total="total">
                 </el-pagination>
             </el-col>
         </el-row>
@@ -59,7 +55,7 @@
 
 <script>
 
-    import  { bookBorrowings } from '../../../../module/admin/book/bookBorrowing';
+    import  { getBookInfos, remove } from '../../../../module/admin/book/bookInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -69,69 +65,35 @@
                 loading: true,
                 visible2: false,
                 filter: {
-                    page: '',
-                    size: '',
+                    pageNum: 1,
+                    pageSize: 10,
                 },
-                currentPage4: 4
+                total: 0,
+                currentPage4: 1,
             }
         },
         mounted () {
-
             let _this = this;
-            this.$nextTick(function () {
-                _this.listUserData = bookBorrowings();
-                _this.loading = false;
-
-               /* bookInfos().then(bookInfos => {
-                    console.log("-------------------->>")
-                    _this.listUserData = bookInfos;
-                    _this.loading = false;
-                })*/
-            })
+            getBookInfos(_this);
         },
         methods: {
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.filter.pageSize = val;
+                getBookInfos(this);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
+                this.filter.pageNum = val;
+                getBookInfos(this);
             },
-            handleMethod(user, name) {
-                let userId = user.id;
+            handleMethod(bookInfo, name) {
+                let bookInfoId = bookInfo.id;
                 this.$router.push({
                     name:name,
                     params: {
-                        userId: userId
+                        bookInfoId: bookInfoId
                     }
                 })
             },
-            toCreate() {
-                this.$router.push({
-                    name: "user-create"
-                })
-            },
-            deleteRow(index, rows) {
-                this.$confirm('是否删除该图书?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        center: true,
-                        message: '删除成功!'
-                    });
-                    rows.splice(index, 1);
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        center: true,
-                        message: '已取消删除'
-                    });
-                });
-
-
-            }
         }
     }
 </script>

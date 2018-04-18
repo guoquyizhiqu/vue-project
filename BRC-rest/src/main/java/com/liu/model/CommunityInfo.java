@@ -2,7 +2,7 @@ package com.liu.model;
 
 import java.util.Date;
 
-public class BookType {
+public class CommunityInfo {
     private String id;
 
     private String name;
@@ -60,6 +60,6 @@ public class BookType {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark;
+        this.remark = remark == null ? null : remark.trim();
     }
 }
