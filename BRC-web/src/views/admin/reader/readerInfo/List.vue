@@ -16,15 +16,15 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-table :data="listUserData" border style="width: 100%" v-loading="loading"
+                <el-table :data="listData" border style="width: 100%" v-loading="loading"
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="readerName" label="读者名称" width="180"></el-table-column>
-                    <el-table-column prop="---" label="性别" width="180"></el-table-column>
-                    <el-table-column prop="---" label="年龄" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="学号" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="创建时间" sortable width="180"></el-table-column>
+                    <el-table-column prop="username" label="读者名称" width="180"></el-table-column>
+                    <el-table-column prop="sex" label="性别" width="180"></el-table-column>
+                    <el-table-column prop="age" label="年龄" sortable width="180"></el-table-column>
+                    <el-table-column prop="number" label="学号" sortable width="180"></el-table-column>
+                    <el-table-column prop="createTime" label="创建时间" sortable width="180"></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <div id="button">
@@ -33,7 +33,7 @@
                                         @click="handleMethod(scope.row, 'user-edit')">编辑</el-button>
                                 <el-button
                                         size="small"
-                                        @click="handleMethod(scope.row, 'user-detail')">详情</el-button>
+                                        @click="handleMethod(scope.row, 'admin-reader-info-detail')">详情</el-button>
                                 <el-button
                                         size="small"
                                         @click="deleteRow(scope.row, listUserData)">删除</el-button>
@@ -49,10 +49,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage4"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="filter.pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
+                        :total="total">
                 </el-pagination>
             </el-col>
         </el-row>
@@ -61,49 +61,40 @@
 
 <script>
 
-    import  { readerInfos } from '../../../../module/admin/reader/readerInfo';
+    import  { getReaderInfos } from '../../../../module/admin/reader/readerInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
             return {
-                listUserData: [],
+                listData: [],
                 search:'',
                 loading: true,
                 visible2: false,
                 filter: {
-                    page: '',
-                    size: '',
+                    pageNum: 1,
+                    pageSize: 10,
                 },
-                currentPage4: 4
+                total: 0,
+                currentPage4: 1,
             }
         },
         mounted () {
-
-            let _this = this;
-            this.$nextTick(function () {
-                _this.listUserData = readerInfos();
-                _this.loading = false;
-
-               /* bookInfos().then(bookInfos => {
-                    console.log("-------------------->>")
-                    _this.listUserData = bookInfos;
-                    _this.loading = false;
-                })*/
-            })
+            getReaderInfos(this);
         },
         methods: {
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.filter.pageSize = val;
+                getReaderInfos(this);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
+                this.filter.pageNum = val;
+                getReaderInfos(this);
             },
-            handleMethod(user, name) {
-                let userId = user.id;
+            handleMethod(readerInfo, name) {
                 this.$router.push({
                     name:name,
                     params: {
-                        userId: userId
+                        readerInfoId: readerInfo.id
                     }
                 })
             },

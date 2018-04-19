@@ -9,7 +9,7 @@ import { setPage } from  '../../../utils/page';
 export const getBookTypes = (_this) => {
     const params = setPage(_this.filter);
     bookTypes(params).then(bookType => {
-        _this.listUserData = bookType.list;
+        _this.listData = bookType.list;
         _this.total = bookType.total;
         _this.loading = false;
     })

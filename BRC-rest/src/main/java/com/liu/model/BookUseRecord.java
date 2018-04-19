@@ -7,7 +7,7 @@ public class BookUseRecord {
 
     private String bookInfoId;
 
-    private String accountId;
+    private String readerId;
 
     private Date borrowTime;
 
@@ -17,7 +17,7 @@ public class BookUseRecord {
 
     private Date updateTime;
 
-    private String status;
+    private Integer status;
 
     public String getId() {
         return id;
@@ -35,12 +35,12 @@ public class BookUseRecord {
         this.bookInfoId = bookInfoId == null ? null : bookInfoId.trim();
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getReaderId() {
+        return readerId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId == null ? null : accountId.trim();
+    public void setReaderId(String readerId) {
+        this.readerId = readerId == null ? null : readerId.trim();
     }
 
     public Date getBorrowTime() {
@@ -75,11 +75,11 @@ public class BookUseRecord {
         this.updateTime = updateTime;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

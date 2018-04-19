@@ -28,6 +28,7 @@ public class BookInfoController {
     @ResponseBody
     @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public String addBookInfo(HttpServletRequest req, BookInfo bookInfo) {
+        bookInfo.setBorrowNumber(0);
         bookInfoService.addBookInfo(bookInfo);
         return "success";
     }

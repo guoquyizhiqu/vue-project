@@ -27,6 +27,8 @@ public class BookInfo {
 
     private Integer borrowingStatus;
 
+    private Integer borrowNumber;
+
     public String getId() {
         return id;
     }
@@ -113,6 +115,14 @@ public class BookInfo {
 
     public void setBorrowingStatus(Integer borrowingStatus) {
         this.borrowingStatus = borrowingStatus;
+    }
+
+    public Integer getBorrowNumber() {
+        return borrowNumber;
+    }
+
+    public void setBorrowNumber(Integer borrowNumber) {
+        this.borrowNumber = borrowNumber;
     }
 
     @Override

@@ -29,6 +29,7 @@ import AdminCommunityInfoList from './views/admin/community/communityinfo/List.v
 import AdminNoticeList from './views/admin/community/notice/List.vue'
 import AdminReaderInfoList from './views/admin/reader/readerInfo/List.vue'
 import AdminReaderInfoCreate from './views/admin/reader/readerInfo/Create.vue'
+import AdminReaderInfoDetail from './views/admin/reader/readerInfo/Detail.vue'
 
 import AdminUserList from './views/admin/basic/user/List.vue'
 import AdminUserCreate from './views/admin/basic/user/Create.vue'
@@ -78,6 +79,7 @@ let routes = [
 
             { path: '/admin/reader/reader-info/list', component: AdminReaderInfoList, name: 'admin-reader-info-list' },
             { path: '/admin/reader/reader-info/create', component: AdminReaderInfoCreate, name: 'admin-reader-info-create' },
+            { path: '/admin/reader/reader-info/detail', component: AdminReaderInfoDetail, name: 'admin-reader-info-detail' },
         ]
     },
     {

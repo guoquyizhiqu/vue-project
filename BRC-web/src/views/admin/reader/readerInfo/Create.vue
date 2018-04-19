@@ -8,16 +8,16 @@
         <el-col :span="6" :offset="9" style="padding-top: 80px">
             <el-form ref="form" :model="form" label-width="120px" class="create">
                 <el-form-item label="读者名称">
-                    <el-input v-model="form.bookName" placeholder="请输入读者名称" ></el-input>
+                    <el-input v-model="form.username" placeholder="请输入读者名称" ></el-input>
                 </el-form-item>
                 <el-form-item label="性别">
-                    <el-input v-model="form.publisher" placeholder="请输入性别" ></el-input>
+                    <el-input v-model="form.sex" placeholder="请输入性别" ></el-input>
                 </el-form-item>
                 <el-form-item label="年龄">
-                    <el-input v-model="form.publisher" placeholder="请输入年龄" ></el-input>
+                    <el-input v-model="form.age" placeholder="请输入年龄" ></el-input>
                 </el-form-item>
                 <el-form-item label="学号">
-                    <el-input v-model="form.author" placeholder="请输入学号" ></el-input>
+                    <el-input v-model="form.number" placeholder="请输入学号" ></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -30,61 +30,42 @@
 </template>
 
 <script>
-    import  { create } from '../../../../module/admin/book/bookInfo';
-    import  { bookTypes} from '../../../../module/admin/book/bookType';
-    import { setPage } from  '../../../../utils/page';
+    import  { create } from '../../../../module/admin/reader/readerInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
             return {
                 form: {
-                    bookName: '',
-                    publisher: '',
-                    publishTime: '',
-                    author: '',
-                    price: '',
-                    bookType: '',
-                    bookTypeOptions: [],
+                    username: '',
+                    sex: '',
+                    age: '',
+                    number: '',
                 }
             }
         },
-        mounted () {
-            let _this = this;
-            let filter = {
-                pageNum: 1,
-                pageSize: 10000,
-            };
-            const params = setPage(filter);
-            bookTypes(params).then(bookType => {
-                _this.form.bookTypeOptions = bookType.list;
-            })
-        },
         methods: {
-            changeDate(val) {
-                this.form.publishTime = val;
-            },
             onSubmit() {
                 let _this = this;
                 create(this.form).then(function (data) {
                     _this.$message({
                         type: 'success',
                         center: true,
-                        message: '添加图书成功!'
+                        message: '添加读者成功!'
                     });
                 }).catch(function (error) {
                     _this.$message({
                         type: 'error',
                         center: true,
-                        message: '添加图书失败!'
+                        message: '添加读者失败!'
                     });
                 });
                 this.$router.push({
-                    name: "admin-book-info-list"
+                    name: "admin-reader-info-list"
                 })
             },
             onCancel() {
                 this.$router.push({
-                    name: "admin-book-info-list"
+                    name: "admin-reader-info-list"
                 })
             },
             setStep(step) {

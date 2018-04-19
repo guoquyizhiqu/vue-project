@@ -52,7 +52,6 @@
         },
         mounted () {
             let _this = this;
-            console.log( _this.$route.params)
             let bookInfoId = _this.$route.params.bookInfoId;
             this.$nextTick(function () {
                 getBookInfo(bookInfoId).then(data => {

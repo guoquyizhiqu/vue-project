@@ -1,12 +1,18 @@
 package com.liu.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.liu.dao.BookInfoMapper;
 import com.liu.dao.BookUseRecordMapper;
+import com.liu.dao.ReaderMapper;
+import com.liu.model.BookInfo;
 import com.liu.model.BookUseRecord;
 import com.liu.service.BookUseRecordService;
+import com.liu.tools.MyConstant;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Reader;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,8 +24,20 @@ public class BookUseRecordServiceImpl implements BookUseRecordService{
     @Resource
     BookUseRecordMapper bookUseRecordDao;
 
+    @Resource
+    BookInfoMapper bookInfoDao;
+
     @Override
     public Boolean add(BookUseRecord bookUseRecord) {
+        bookUseRecord.setCreateTime(new Date());
+        bookUseRecord.setBorrowTime(new Date());
+        bookUseRecord.setStatus(MyConstant.BOOKINFO_BORROWING);
+        BookInfo bookInfo = bookInfoDao.selectByPrimaryKey(bookUseRecord.getBookInfoId());
+        int borrowNumber = bookInfo.getBorrowNumber();
+        int number = borrowNumber+1;
+        bookInfo.setBorrowNumber(number);
+        bookInfo.setBorrowingStatus(MyConstant.BOOKINFO_BORROWING);
+        bookInfoDao.edit(bookInfo);
         Boolean flag = bookUseRecordDao.save(bookUseRecord);
         return flag;
     }

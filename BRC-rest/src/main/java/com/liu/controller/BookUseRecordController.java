@@ -19,16 +19,15 @@ import java.util.List;
  * Created by liu on 2018/3/26.
  */
 @RestController
-@RequestMapping(value = "/book-use-record")
+    @RequestMapping(value = "/book-use-record")
 public class BookUseRecordController {
 
     @Autowired
     private BookUseRecordService bookUseRecordService;
 
     @ResponseBody
-    @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
+    @PostMapping(value = "/borrow", produces = {"application/json;charset=UTF-8"})
     public String add(HttpServletRequest req, BookUseRecord bookUseRecord) {
-        bookUseRecord.setCreateTime(new Date());
         bookUseRecordService.add(bookUseRecord);
         return "success";
     }

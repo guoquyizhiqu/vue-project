@@ -4,10 +4,10 @@
 
 import axios from '../../../api/api';
 import { post } from '../../../api/myAxios';
-import { getDatas } from  '../../../utils/page';
+import { getListData } from  '../../../utils/page';
 
 export const getBookInfos = (_this) => {
-    getDatas(bookInfos, _this);
+    getListData(bookInfos, _this);
 };
 
 export const bookInfos = params => {

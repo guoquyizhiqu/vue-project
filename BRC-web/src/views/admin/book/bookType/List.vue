@@ -16,7 +16,7 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-table :data="listUserData" border style="width: 100%" v-loading="loading"
+                <el-table :data="listData" border style="width: 100%" v-loading="loading"
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
@@ -63,7 +63,7 @@
     export default {
         data () {
             return {
-                listUserData: [],
+                listData: [],
                 search:'',
                 loading: true,
                 visible2: false,

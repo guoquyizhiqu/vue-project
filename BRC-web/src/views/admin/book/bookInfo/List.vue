@@ -16,7 +16,7 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-table :data="listUserData" border style="width: 100%" v-loading="loading"
+                <el-table :data="listData" border style="width: 100%" v-loading="loading"
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
@@ -27,6 +27,7 @@
                     <el-table-column prop="price" label="价格" sortable width="130"></el-table-column>
                     <el-table-column prop="bookType" label="分类" width="130"></el-table-column>
                     <el-table-column prop="createTime" label="创建时间" sortable width="130"></el-table-column>
+                    <el-table-column prop="borrowNumber" label="借阅次数" sortable width="130"></el-table-column>
         <!--            <el-table-column prop="-&#45;&#45;" label="创建人" width="130"></el-table-column>-->
                     <el-table-column label="操作">
                         <template slot-scope="scope">
@@ -69,7 +70,7 @@
     export default {
         data () {
             return {
-                listUserData: [],
+                listData: [],
                 search:'',
                 loading: true,
                 visible2: false,
