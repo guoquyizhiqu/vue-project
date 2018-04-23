@@ -55,7 +55,7 @@
 
 <script>
 
-    import  { getBookInfos, remove } from '../../../../module/admin/book/bookInfo';
+    import  { getBookInfos } from '../../../../module/admin/book/bookBorrowing';
     import { Message } from 'element-ui';
     export default {
         data () {

@@ -3,6 +3,7 @@ package com.liu.dao;
 import com.liu.model.BookInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookInfoMapper {
     int deleteByPrimaryKey(String id);
@@ -21,5 +22,5 @@ public interface BookInfoMapper {
 
     int updateByPrimaryKey(BookInfo record);
 
-    List<BookInfo> selectAllBookInfo();
+    List<BookInfo> selectAllBookInfo(Map<String, Object> queryMap);
 }

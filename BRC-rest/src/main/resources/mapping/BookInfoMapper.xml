@@ -183,5 +183,13 @@
       bi.borrow_number AS borrow_number,
       bt.name AS book_type
     FROM book_info bi LEFT JOIN book_type bt ON bi.book_type = bt.id
+    <include refid="dynamic_conditions" />
   </select>
+  <sql id="dynamic_conditions">
+    <where>
+      <if test="borrowingStatus!=null and borrowingStatus!=''">
+        and bi.borrowing_status = #{borrowingStatus}
+      </if>
+    </where>
+  </sql>
 </mapper>

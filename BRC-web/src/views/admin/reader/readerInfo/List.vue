@@ -36,7 +36,7 @@
                                         @click="handleMethod(scope.row, 'admin-reader-info-detail')">详情</el-button>
                                 <el-button
                                         size="small"
-                                        @click="deleteRow(scope.row, listUserData)">删除</el-button>
+                                        @click="deleteRow(scope.row, listData)">删除</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -61,7 +61,7 @@
 
 <script>
 
-    import  { getReaderInfos } from '../../../../module/admin/reader/readerInfo';
+    import  { getReaderInfos, remove } from '../../../../module/admin/reader/readerInfo';
     import { Message } from 'element-ui';
     export default {
         data () {
@@ -103,23 +103,26 @@
                     name: "admin-reader-info-create"
                 })
             },
-            deleteRow(index, rows) {
-                this.$confirm('是否删除该图书?', '提示', {
+            deleteRow(row, rows) {
+                let _this = this;
+                _this.$confirm('是否删除该图书类型?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        center: true,
-                        message: '删除成功!'
-                    });
-                    rows.splice(index, 1);
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        center: true,
-                        message: '已取消删除'
+                    remove(row.id).then(function (data) {
+                        _this.$message({
+                            type: 'success',
+                            center: true,
+                            message: '删除成功!'
+                        });
+                        getReaderInfos(_this);
+                    }).catch(function (error) {
+                        _this.$message({
+                            type: 'info',
+                            center: true,
+                            message: '已取消删除'
+                        });
                     });
                 });
 

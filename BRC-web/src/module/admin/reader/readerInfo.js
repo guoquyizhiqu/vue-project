@@ -28,3 +28,11 @@ export const create = params => {
     };
     return post(param).then(data => data)
 };
+
+export const remove = params => {
+    let param = {
+        url:'/api/reader/delete',
+        data: {id:params}
+    };
+    return post(param)
+};

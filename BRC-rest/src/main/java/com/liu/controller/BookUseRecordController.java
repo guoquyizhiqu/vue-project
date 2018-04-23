@@ -4,6 +4,7 @@ package com.liu.controller;
 import com.github.pagehelper.PageInfo;
 import com.liu.model.BookUseRecord;
 import com.liu.service.BookUseRecordService;
+import com.liu.tools.ActionContextUtils;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -33,6 +36,13 @@ public class BookUseRecordController {
     }
 
     @ResponseBody
+    @PostMapping(value = "/return-book", produces = {"application/json;charset=UTF-8"})
+    public String returnBook(String id) {
+        bookUseRecordService.returnById(id);
+        return "success";
+    }
+
+    @ResponseBody
     @PostMapping(value = "/edit", produces = {"application/json;charset=UTF-8"})
     public String edit(HttpServletRequest req, BookUseRecord bookUseRecord) {
         bookUseRecord.setUpdateTime(new Date());
@@ -43,7 +53,13 @@ public class BookUseRecordController {
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"})
     public PageInfo findAllBookUseRecord(int pageNum, int pageSize) {
-        List<BookUseRecord> list = bookUseRecordService.findAll(pageNum, pageSize);
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        String status = ActionContextUtils.getParameter("status");
+        if(status != null && !status.equals(""))
+        {
+            queryMap.put("status", status);
+        }
+        List<BookUseRecord> list = bookUseRecordService.findAll(pageNum, pageSize, queryMap);
         return new PageInfo(list);
     }
 

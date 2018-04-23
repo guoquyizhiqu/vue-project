@@ -10,6 +10,8 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="bookName" property="bookName" jdbcType="VARCHAR" />
+    <result column="readerName" property="readerName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, book_info_id, reader_id, borrow_time, return_time, create_time, update_time,
@@ -132,7 +134,15 @@
 
   <select id="selectAll" resultMap="BaseResultMap">
     select
-    *
-    from book_use_record
+    bur.*, bi.book_name as bookName, r.username as readerName
+    from book_use_record bur left join book_info bi on bur.book_info_id = bi.id left join reader r on bur.reader_id = r.id
+    <include refid="dynamic_conditions" />
   </select>
+  <sql id="dynamic_conditions">
+    <where>
+      <if test="status!=null and status!=''">
+        and bur.status = #{status}
+      </if>
+    </where>
+  </sql>
 </mapper>

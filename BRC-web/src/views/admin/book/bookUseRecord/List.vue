@@ -16,29 +16,14 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-table :data="listUserData" border style="width: 100%" v-loading="loading"
+                <el-table :data="listData" border style="width: 100%" v-loading="loading"
                           max-height="480"
                           :default-sort="{prop: 'date', order: 'descending'}"
                 >
-                    <el-table-column prop="bookName" label="图书名称" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借阅人" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="借用时间" sortable width="180"></el-table-column>
-                    <el-table-column prop="---" label="归还时间" sortable width="180"></el-table-column>
-                    <el-table-column label="操作">
-                        <template slot-scope="scope">
-                            <div id="button">
-                                <el-button
-                                        size="small"
-                                        @click="handleMethod(scope.row, 'user-edit')">编辑</el-button>
-                                <el-button
-                                        size="small"
-                                        @click="handleMethod(scope.row, 'user-detail')">详情</el-button>
-                                <el-button
-                                        size="small"
-                                        @click="deleteRow(scope.row, listUserData)">删除</el-button>
-                            </div>
-                        </template>
-                    </el-table-column>
+                    <el-table-column prop="bookName" label="图书名称"></el-table-column>
+                    <el-table-column prop="readerName" label="借阅人" ></el-table-column>
+                    <el-table-column prop="borrowTime" label="借阅时间" sortable></el-table-column>
+                    <el-table-column prop="returnTime" label="归还时间" sortable></el-table-column>
                 </el-table>
             </el-col>
         </el-row>
@@ -48,10 +33,10 @@
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                         :current-page="currentPage4"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="filter.pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
+                        :total="total">
                 </el-pagination>
             </el-col>
         </el-row>
@@ -60,82 +45,40 @@
 
 <script>
 
-    import  { bookUseRecords } from '../../../../module/admin/book/bookUseRecord';
+    import  { getBookUseRecords } from '../../../../module/admin/book/bookUseRecord';
     import { Message } from 'element-ui';
     export default {
         data () {
             return {
-                listUserData: [],
+                listData: [],
                 search:'',
                 loading: true,
                 visible2: false,
                 filter: {
-                    page: '',
-                    size: '',
+                    pageNum: 1,
+                    pageSize: 10,
                 },
-                currentPage4: 4
+                total: 0,
+                currentPage4: 1,
             }
         },
         mounted () {
-
             let _this = this;
-            this.$nextTick(function () {
-                _this.listUserData = bookUseRecords();
-                _this.loading = false;
-
-               /* bookInfos().then(bookInfos => {
-                    console.log("-------------------->>")
-                    _this.listUserData = bookInfos;
-                    _this.loading = false;
-                })*/
-            })
+            getBookUseRecords(_this);
         },
         methods: {
             handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
+                this.filter.pageSize = val;
+                getBookUseRecords(this);
             },
             handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
-            },
-            handleMethod(user, name) {
-                let userId = user.id;
-                this.$router.push({
-                    name:name,
-                    params: {
-                        userId: userId
-                    }
-                })
-            },
-            toCreate() {
-                this.$router.push({
-                    name: "user-create"
-                })
-            },
-            deleteRow(index, rows) {
-                this.$confirm('是否删除该图书?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        center: true,
-                        message: '删除成功!'
-                    });
-                    rows.splice(index, 1);
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        center: true,
-                        message: '已取消删除'
-                    });
-                });
-
-
+                this.filter.pageNum = val;
+                getBookUseRecords(this);
             }
         }
     }
 </script>
+
 
 <style>
     body {

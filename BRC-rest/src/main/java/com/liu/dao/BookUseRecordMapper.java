@@ -3,6 +3,7 @@ package com.liu.dao;
 import com.liu.model.BookUseRecord;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookUseRecordMapper {
 
@@ -10,7 +11,7 @@ public interface BookUseRecordMapper {
 
     Boolean edit(BookUseRecord bookUseRecord);
 
-    List<BookUseRecord> selectAll();
+    List<BookUseRecord> selectAll(Map<String, Object> queryMap);
 
     boolean deleteById(String id);
 

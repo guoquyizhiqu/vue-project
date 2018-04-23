@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liu on 2018/3/26.
@@ -53,10 +54,10 @@ public class BookInfoServiceImpl implements BookInfoService{
    * pageSize 每页显示的数据条数
    * */
     @Override
-    public List<BookInfo> findAllBookInfo(int pageNum, int pageSize) {
+    public List<BookInfo> findAllBookInfo(int pageNum, int pageSize, Map<String, Object> queryMap) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<BookInfo> list = bookInfoDao.selectAllBookInfo();
+        List<BookInfo> list = bookInfoDao.selectAllBookInfo(queryMap);
 
         return list;
     }

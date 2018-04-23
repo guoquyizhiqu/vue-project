@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.io.Reader;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liu on 2018/3/26.
@@ -43,6 +44,25 @@ public class BookUseRecordServiceImpl implements BookUseRecordService{
     }
 
     @Override
+    public Boolean returnById(String id) {
+        BookUseRecord bookUseRecord = bookUseRecordDao.selectByPrimaryKey(id);
+        bookUseRecord.setReturnTime(new Date());
+        bookUseRecord.setUpdateTime(new Date());
+        bookUseRecord.setStatus(MyConstant.BOOKINFO_RETURN);
+        BookInfo bookInfo = bookInfoDao.selectByPrimaryKey(bookUseRecord.getBookInfoId());
+        bookInfo.setBorrowingStatus(MyConstant.BOOKINFO_RETURN);
+        boolean flag = false;
+        try {
+            bookUseRecordDao.edit(bookUseRecord);
+            bookInfoDao.edit(bookInfo);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    @Override
     public Boolean edit(BookUseRecord bookUseRecord) {
         Boolean flag = bookUseRecordDao.edit(bookUseRecord);
         return flag;
@@ -66,10 +86,10 @@ public class BookUseRecordServiceImpl implements BookUseRecordService{
    * pageSize 每页显示的数据条数
    * */
     @Override
-    public List<BookUseRecord> findAll(int pageNum, int pageSize) {
+    public List<BookUseRecord> findAll(int pageNum, int pageSize, Map<String, Object> queryMap) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<BookUseRecord> list = bookUseRecordDao.selectAll();
+        List<BookUseRecord> list = bookUseRecordDao.selectAll(queryMap);
 
         return list;
     }

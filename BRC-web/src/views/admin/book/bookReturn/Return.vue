@@ -2,8 +2,8 @@
     <div id="app">
         <el-breadcrumb separator-class="el-icon-arrow-right" separator="/">
             <el-breadcrumb-item :to="{ path: 'list' }">图书管理</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: 'list' }">图书借阅管理</el-breadcrumb-item>
-            <el-breadcrumb-item>图书借阅</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: 'list' }">图书归还管理</el-breadcrumb-item>
+            <el-breadcrumb-item>图书归还</el-breadcrumb-item>
         </el-breadcrumb>
         <el-col :span="6" :offset="9" style="padding-top: 80px">
             <el-form ref="form" :model="form" label-width="120px" class="create">
@@ -41,7 +41,8 @@
                     {{form.readerName}}
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">确认</el-button>
+                    <el-button type="primary" @click="onSubmit">保存</el-button>
+                    <el-button @click="onCancel">取消</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
@@ -126,6 +127,11 @@
                         message: '借阅图书失败!'
                     });
                 });
+                this.$router.push({
+                    name: "admin-book-borrowing-list"
+                })
+            },
+            onCancel() {
                 this.$router.push({
                     name: "admin-book-borrowing-list"
                 })

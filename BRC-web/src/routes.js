@@ -22,6 +22,7 @@ import AdminBookTypeDetail from './views/admin/book/bookType/Detail.vue'
 import AdminBookBorrowingList from './views/admin/book/bookBorrowing/List.vue'
 import AdminBookBorrowing from './views/admin/book/bookBorrowing/Borrowing.vue'
 import AdminBookReturnList from './views/admin/book/bookReturn/List.vue'
+import AdminBookReturn from './views/admin/book/bookReturn/return.vue'
 
 import AdminBookUseRecordList from './views/admin/book/bookUseRecord/List.vue'
 
@@ -71,6 +72,7 @@ let routes = [
             { path: '/admin/book/book-borrowing/list', component: AdminBookBorrowingList, name: 'admin-book-borrowing-list' },
             { path: '/admin/book/book-borrowing', component: AdminBookBorrowing, name: 'admin-book-borrowing' },
             { path: '/admin/book/book-return/list', component: AdminBookReturnList, name: 'admin-book-return-list' },
+            { path: '/admin/book/book-return', component: AdminBookReturn, name: 'admin-book-return' },
 
             { path: '/admin/book/book-use-record/list', component: AdminBookUseRecordList, name: 'admin-book-use-record-list' },
 

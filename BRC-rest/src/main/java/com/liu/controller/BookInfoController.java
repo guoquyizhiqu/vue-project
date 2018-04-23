@@ -4,6 +4,7 @@ package com.liu.controller;
 import com.github.pagehelper.PageInfo;
 import com.liu.model.BookInfo;
 import com.liu.service.BookInfoService;
+import com.liu.tools.ActionContextUtils;
 import com.liu.tools.MyConstant;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liu on 2018/3/26.
@@ -44,7 +47,13 @@ public class BookInfoController {
 
     @RequestMapping(value = "/list", produces = {"application/json;charset=UTF-8"})
     public PageInfo findAllBookInfo(int pageNum, int pageSize) {
-        List<BookInfo> list = bookInfoService.findAllBookInfo(pageNum, pageSize);
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        String borrowingStatus = ActionContextUtils.getParameter("borrowingStatus");
+        if(borrowingStatus != null && !borrowingStatus.equals(""))
+        {
+            queryMap.put("borrowingStatus", borrowingStatus);
+        }
+        List<BookInfo> list = bookInfoService.findAllBookInfo(pageNum, pageSize, queryMap);
         return new PageInfo(list);
     }
 
